@@ -21,8 +21,10 @@ int main (void)
 		else if (no<ans)	
 			printf("你猜的有点小，再大一点看看\n");
 	}while(no!=ans &&count<10 );
-	if (count<10)
+	if (count<10){
 		printf("你猜对了！\n");
+		printf("你用了%d步猜到了结果。",count);
+	}
 	else
 		printf("真遗憾，你超过了十步\n");
 	return 0;
