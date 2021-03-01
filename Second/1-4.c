@@ -9,7 +9,7 @@ int main (void)
 
 	do{
 		printf("\n生成了随机数%d。\n",rand());
-		printf("是否再来一次：（0）否（1）是：");
+		printf("是否再来一次? （0）否（1）是：");
 		scanf("%d",&retry);
 	}while(retry==1);
 	return 0;
