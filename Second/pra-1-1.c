@@ -1,13 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 int main (void)	
-{	
+{
+	int r;	
 	srand(time(NULL));
-	int a=rand() % 7;
+	r=rand();
+	int a=r%7;
 	
-	printf("%d",a);
+	printf("%d %d",r,a);
 	if (a==0)
 		printf("大吉\n");
 	else if (a==1)
