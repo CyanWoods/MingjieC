@@ -6,17 +6,15 @@ int main (void)
 {
 	int r;
 	int t=time(NULL);
-	int p=rand();
-	printf("%d\n",p);	
-	//srand(t);
+	srand(t);
 	r=rand();
 
-	int a=r%7;
+	int a=r%10;
 	
-	printf("time:%d\n",t);	
-	printf("r:%d \n %d\n",r,a);
-	if (a==0)
-		printf("大吉\n");
+	printf("%d\n",t);	
+	printf("%d %d\n",r,a);
+	if (a==6)
+		printf("大凶\n");
 	else if (a==1)
 		printf("中吉\n");
 	else if (a==2)
@@ -28,6 +26,6 @@ int main (void)
 	else if (a==5)
 		printf("小凶\n");
 	else 
-		printf("大凶\n");
+		printf("大吉\n");
 	return 0 ;
 }
