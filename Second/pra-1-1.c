@@ -4,10 +4,12 @@
 
 int main (void)	
 {
+	int bb;
 	int r;
 	int rr;
 	int rrr;
 	int t=time(NULL);
+	bb= rand();
 	srand(t);
 	r=rand();
 	srand(r);
@@ -17,6 +19,7 @@ int main (void)
 
 	int a=r%7;
 	
+	printf("%d\n",bb);	
 	printf("%d\n",t);	
 	printf("%d %d\n",r,a);
 	if (a==0)
