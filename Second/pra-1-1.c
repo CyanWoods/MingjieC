@@ -15,7 +15,7 @@ int main (void)
 	srand(rr);
 	rrr=rand();
 
-	int a=rrr%7;
+	int a=r%7;
 	
 	printf("%d\n",t);	
 	printf("%d %d\n",rrr,a);
