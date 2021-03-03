@@ -4,12 +4,21 @@
 
 int main (void)	
 {
-	int r;	
-	srand(time(NULL));
+	int r;
+	int rr;
+	int rrr;
+	int t=time(NULL);
+	srand(t);
 	r=rand();
-	int a=r%7;
+	srand(r);
+	rr=rand();
+	srand(rr);
+	rrr=rand();
+
+	int a=rrr%7;
 	
-	printf("%d %d",r,a);
+	printf("%d\n",t);	
+	printf("%d %d\n",rrr,a);
 	if (a==0)
 		printf("大吉\n");
 	else if (a==1)
