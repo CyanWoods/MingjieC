@@ -18,7 +18,7 @@ int main (void)
 	int a=r%7;
 	
 	printf("%d\n",t);	
-	printf("%d %d\n",rrr,a);
+	printf("%d %d\n",r,a);
 	if (a==0)
 		printf("大吉\n");
 	else if (a==1)
