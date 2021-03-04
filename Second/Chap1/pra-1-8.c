@@ -16,18 +16,19 @@ int main (void)
 	ans=rand()%100;
 
 	printf("请输入一个0-99之间的整数.\n\n");
-	stage=0;
 
-	while(no!=ans && stage<MAX_STAGE){
+	for (stage=0;stage<=MAX_STAGE;stage++){
 		printf("还有%d次机会\n",MAX_STAGE-stage);
 		printf("你输入的值是：");
 		scanf("%d",&no);
-		num[stage++]=no;
+		num[stage]=no;
 
 		if (no>ans)
 			printf("你输入的值有点大，再小一点。\n");
 		else if (no<ans)
 			printf("你输入的值有点小，再大一点。\n");
+		else
+			break;
 	}
 
 
@@ -38,7 +39,7 @@ int main (void)
 
 
 	puts("\n--- 输入记录 ---");
-	for (i=0;i<stage;i++){
+	for (i=0;i<stage+1;i++){
 		if (num[i]-ans!=0)
 			printf("%2d:%4d %+4d\n",i+1,num[i],num[i]-ans);
 		else if (num[i]-ans==0)
