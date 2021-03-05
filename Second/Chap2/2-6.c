@@ -19,18 +19,18 @@ int main(void)
 
 	start=clock();
 
-	while(1){
+	do{
 		scanf("%d",&inp);
-		if(inp==a+b+c)
-			break;
-		printf("pls re-calculate the result.");
-	}
+		if(inp!=a+b+c)
+			printf("re-calculate, lps.\n");
+	}while(inp!=a+b+c);
 	
 	end=clock();
 
 	req_time=(double)(end-start)/CLOCKS_PER_SEC;
-	printf("%.1f %.1f",(double)start,(double)(end));
-	printf("you used %.1fsecond",req_time);
+	printf("%.1f %.1f\n",(double)start,(double)(end));
+	printf("%.1f\n",(double)CLOCKS_PER_SEC);
+	printf("you used %.1fsecond\n",req_time);
 
 	if(req_time>30)
 		printf("you spent too much time");
