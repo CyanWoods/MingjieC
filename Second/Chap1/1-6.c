@@ -1,3 +1,6 @@
+//通过取余的方式虽小随机数到指定大小
+
+
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>

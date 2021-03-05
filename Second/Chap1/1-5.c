@@ -1,3 +1,6 @@
+//利用time库中的time()函数作为随机数生成器的种子
+
+
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>

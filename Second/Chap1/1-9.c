@@ -1,3 +1,6 @@
+//利用sizeof() 显示数组的个数
+
+
 #include <stdio.h>
 
 int main(void)
