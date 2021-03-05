@@ -1,3 +1,6 @@
+//随机数生成 rand()函数使用
+
+
 #include <stdio.h>
 #include <stdlib.h>
 

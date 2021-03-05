@@ -1,3 +1,6 @@
+//利用数组显示每次的输入记录
+
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
