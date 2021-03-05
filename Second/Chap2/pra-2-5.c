@@ -3,23 +3,26 @@
 #include <stdlib.h>
 
 int main(void)
-{
+{	
+	int round=2;
+	double his[round];
+	double start[round];
+	double stop[round];
 	int stage;
-	int a, b, c;			/* 要进行加法运算的数值 */
-	int x;					/* 已读取的值 */
-	int n;					/* 空白的宽度 */
-	clock_t	start, end;		/* 开始时间·结束时间 */
+	int a, b, c;			
+	int x;					
+	int n;					
+	int i=0;
 
-	srand(time(NULL));		/* 设定随机数的种子 */
+	srand(time(NULL));		
 
-	printf("扩大视野心算训练开始!!\n");
-	start = clock();				/* 开始计算 */
-
-	for (stage = 0; stage < 10; stage++) {
-		a = 10 + rand() % 90;		/* 生成10～99的随机数 */
-		b = 10 + rand() % 90;		/* 　　　　〃　　　　 */
-		c = 10 + rand() % 90;		/* 　　　　〃　　　　 */
-		n = rand() % 17;			/* 生成0～16的随机数  */
+	for (stage = 0; stage < round; stage++)
+	 {
+		start[i]= (double)clock();				
+		a = 10 + rand() % 9;		
+		b = 10 + rand() % 9;		
+		c = 10 + rand() % 9;	
+		n = rand() % 5;			
 
 		printf("%d%*s+%*s%d%*s+%*s%d：", a, n, "", n, "", b, n, "", n, "", c);
 
@@ -29,11 +32,20 @@ int main(void)
 				break;
 			printf("\a回答错误。请重新输入：");
 		} while (1);
+		stop[i]=(double)clock();
+		his[i]=stop[i]-start[i];
+		i++;
 	}
+	for (i=0;i<round;i++)
+		printf("%f-%f=%f\n",stop[i],start[i],his[i]);
 
-	end = clock();					/* 计算结束 */
-
-	printf("用时%.1f秒。\n", (double)(end - start) / CLOCKS_PER_SEC);
-
+	double sum=0;
+	double ave;
+	for (i=0;i<round;i++)
+	{
+		sum=sum+his[i];
+	}
+	ave=sum/i;
+	printf("%f",ave);
 	return 0;
 }
