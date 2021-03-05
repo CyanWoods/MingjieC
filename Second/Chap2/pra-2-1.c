@@ -1,0 +1,1 @@
+//由于posix定义的CLOCLS_PER_SEC为1000000，time()仅保存cpu运行的tick数，不好利用对差值求商来计算用时，故放弃。
