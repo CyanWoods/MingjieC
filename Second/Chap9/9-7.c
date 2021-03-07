@@ -1,8 +1,8 @@
-/* bcopy£ºÎÄ¼şµÄ¸´ÖÆ */
+/* bcopyï¼šæ–‡ä»¶çš„å¤åˆ¶ */
 
 #include <stdio.h>
 
-#define BSIZE	1024			/* ·Ö¸î³ÉÕâ¸ö´óĞ¡ºó½øĞĞ¸´ÖÆ */
+#define BSIZE	1024			/* åˆ†å‰²æˆè¿™ä¸ªå¤§å°åè¿›è¡Œå¤åˆ¶ */
 
 int main(int argc, char *argv[])
 {
@@ -11,14 +11,14 @@ int main(int argc, char *argv[])
 	unsigned char buf[BSIZE];
 
 	if (argc != 3) {
-		fprintf(stderr, "²ÎÊı²»ÕıÈ·¡£\n");
-		fprintf(stderr, "bcopy Ô´Î»ÖÃµÄÎÄ¼şÃû Ä¿±êÎ»ÖÃµÄÎÄ¼şÃû\n");
+		fprintf(stderr, "å‚æ•°ä¸æ­£ç¡®ã€‚\n");
+		fprintf(stderr, "bcopy æºä½ç½®çš„æ–‡ä»¶å ç›®æ ‡ä½ç½®çš„æ–‡ä»¶å\n");
 	} else {
 		if ((src = fopen(*++argv, "rb")) == NULL) {
-			fprintf(stderr, "ÎÄ¼ş%sÎŞ·¨´ò¿ª¡£\n", *argv);
+			fprintf(stderr, "æ–‡ä»¶%sæ— æ³•æ‰“å¼€ã€‚\n", *argv);
 			return 1;
 		} else if ((dst = fopen(*++argv, "wb")) == NULL) {
-			fprintf(stderr, "ÎÄ¼ş%sÎŞ·¨´ò¿ª¡£\n", *argv);
+			fprintf(stderr, "æ–‡ä»¶%sæ— æ³•æ‰“å¼€ã€‚\n", *argv);
 			fclose(src);
 			return 1;
 		} else {

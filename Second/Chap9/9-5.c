@@ -1,9 +1,9 @@
-/* entab ¡¤¡¤¡¤ °Ñ¿Õ°××Ö·û×ª»»³ÉË®Æ½ÖÆ±í·û */
+/* entab Â·Â·Â· æŠŠç©ºç™½å­—ç¬¦è½¬æ¢æˆæ°´å¹³åˆ¶è¡¨ç¬¦ */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-/*--- °Ñ´ÓsrcÊäÈëµÄ¿Õ°××Ö·û×ª»»³ÉÖÆ±í·ûºóÊä³öµ½dst ---*/
+/*--- æŠŠä»srcè¾“å…¥çš„ç©ºç™½å­—ç¬¦è½¬æ¢æˆåˆ¶è¡¨ç¬¦åè¾“å‡ºåˆ°dst ---*/
 void entab(FILE *src, FILE *dst, int width)
 {
 	int	ch;
@@ -41,22 +41,22 @@ int main(int argc, char *argv[])
 	FILE *fp;
 
 	if (argc < 2)
-		entab(stdin, stdout, width);		/* ±ê×¼ÊäÈë ¡ú ±ê×¼Êä³ö */
+		entab(stdin, stdout, width);		/* æ ‡å‡†è¾“å…¥ â†’ æ ‡å‡†è¾“å‡º */
 	else {
 		while (--argc > 0) {
 			if (**(++argv) == '-') {
 				if (*++(*argv) == 't')
 					width = atoi(++*argv);
 				else {
-					fputs("²ÎÊı²»ÕıÈ·¡£\n", stderr);
+					fputs("å‚æ•°ä¸æ­£ç¡®ã€‚\n", stderr);
 					return 1;
 				}
 			} else if ((fp = fopen(*argv, "r")) == NULL) {
-				fprintf(stderr, "ÎÄ¼ş%sÎŞ·¨ÕıÈ·´ò¿ª¡£\n",
+				fprintf(stderr, "æ–‡ä»¶%sæ— æ³•æ­£ç¡®æ‰“å¼€ã€‚\n",
 								*argv);
 				return 1;
 			} else {
-				entab(fp, stdout, width);	/* Á÷fp ¡ú ±ê×¼Êä³ö */
+				entab(fp, stdout, width);	/* æµfp â†’ æ ‡å‡†è¾“å‡º */
 				fclose(fp);
 			}
 		}

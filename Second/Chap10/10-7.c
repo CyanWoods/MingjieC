@@ -1,40 +1,40 @@
-/* µ¥´ÊÑ§Ï°³ÌĞò£¨ÆäËÄ£º´ÓÎÄ¼şÖĞ¶ÁÈ¡µ¥´Ê£©*/
+/* å•è¯å­¦ä¹ ç¨‹åºï¼ˆå…¶å››ï¼šä»æ–‡ä»¶ä¸­è¯»å–å•è¯ï¼‰*/
 
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define	CNO		4		/* Ñ¡ÏîÊıÁ¿ */
+#define	CNO		4		/* é€‰é¡¹æ•°é‡ */
 
 #define swap(type, x, y)   do { type t = x; x = y; y = t; } while (0)
 
-int	QNO;				/* µ¥´ÊÊıÁ¿ */
-char **cptr;			/* Ö¸ÏòÖĞÎÄµ¥´ÊµÄÖ¸ÕëÊı×é */
-char **eptr;			/* Ö¸ÏòÓ¢Óïµ¥´ÊµÄÖ¸ÕëÊı×é */
+int	QNO;				/* å•è¯æ•°é‡ */
+char **cptr;			/* æŒ‡å‘ä¸­æ–‡å•è¯çš„æŒ‡é’ˆæ•°ç»„ */
+char **eptr;			/* æŒ‡å‘è‹±è¯­å•è¯çš„æŒ‡é’ˆæ•°ç»„ */
 
-/*--- ÏÔÊ¾Ñ¡Ïî ---*/
+/*--- æ˜¾ç¤ºé€‰é¡¹ ---*/
 void print_cand(const int c[], int sw)
 {
 	int i;
 
 	for (i = 0; i < CNO; i++)
 		printf("(%d) %s  ", i, sw ? cptr[c[i]] : eptr[c[i]]);
-	printf("£º");
+	printf("ï¼š");
 }
 
-/*--- Éú³ÉÑ¡Ïî²¢·µ»ØÕıÈ·µÄÏÂ±ê ---*/
+/*--- ç”Ÿæˆé€‰é¡¹å¹¶è¿”å›æ­£ç¡®çš„ä¸‹æ ‡ ---*/
 int make_cand(int c[], int n)
 {
 	int i, j, x;
 
-	c[0] = n;						/* ÔÚ¿ªÍ·ÔªËØÖĞ´æÈëÕıÈ·´ğ°¸ */
+	c[0] = n;						/* åœ¨å¼€å¤´å…ƒç´ ä¸­å­˜å…¥æ­£ç¡®ç­”æ¡ˆ */
 
 	for (i = 1; i < CNO; i++) {
-		do {						/* Éú³É²»ÖØ¸´µÄËæ»úÊı */
+		do {						/* ç”Ÿæˆä¸é‡å¤çš„éšæœºæ•° */
 			x = rand() % QNO;
 			for (j = 0; j < i; j++)
-				if (c[j] == x)		/* ÒÑ¾­Éú³ÉÁËÏàÍ¬µÄËæ»úÊı */
+				if (c[j] == x)		/* å·²ç»ç”Ÿæˆäº†ç›¸åŒçš„éšæœºæ•° */
 					break;
 		} while (i != j);
 		c[i] = x;
@@ -42,12 +42,12 @@ int make_cand(int c[], int n)
 
 	j = rand() % CNO;
 	if (j != 0)
-		swap(int, c[0], c[j]);	/* ÒÆ¶¯ÕıÈ·´ğ°¸ */
+		swap(int, c[0], c[j]);	/* ç§»åŠ¨æ­£ç¡®ç­”æ¡ˆ */
 
 	return j;
 }
 
-/*--- ¶ÁÈ¡µ¥´Ê ---*/
+/*--- è¯»å–å•è¯ ---*/
 int read_tango(void)
 {
 	int	i;
@@ -55,7 +55,7 @@ int read_tango(void)
 
 	if ((fp = fopen("TANGO", "r")) == NULL) return 1;
 
-	fscanf(fp, "%d", &QNO);			/* ¶ÁÈ¡µ¥´ÊÊıÁ¿ */
+	fscanf(fp, "%d", &QNO);			/* è¯»å–å•è¯æ•°é‡ */
 
 	if ((cptr = calloc(QNO, sizeof(char *))) == NULL) return 1;
 	if ((eptr = calloc(QNO, sizeof(char *))) == NULL) return 1;
@@ -78,43 +78,43 @@ int read_tango(void)
 int main(void)
 {
 	int i;
-	int nq, pq;			/* ÌâÄ¿±àºÅºÍÉÏÒ»´ÎµÄÌâÄ¿±àºÅ */
-	int na;				/* ÕıÈ·´ğ°¸µÄ±àºÅ */
-	int sw;				/* ÌâÄ¿ÓïÑÔ£¨0£ºÖĞÎÄ/1£ºÓ¢Óï£©*/
-	int retry;			/* ÖØĞÂÌôÕ½Âğ£¿*/
-	int cand[CNO];		/* Ñ¡ÏîµÄ±àºÅ */
+	int nq, pq;			/* é¢˜ç›®ç¼–å·å’Œä¸Šä¸€æ¬¡çš„é¢˜ç›®ç¼–å· */
+	int na;				/* æ­£ç¡®ç­”æ¡ˆçš„ç¼–å· */
+	int sw;				/* é¢˜ç›®è¯­è¨€ï¼ˆ0ï¼šä¸­æ–‡/1ï¼šè‹±è¯­ï¼‰*/
+	int retry;			/* é‡æ–°æŒ‘æˆ˜å—ï¼Ÿ*/
+	int cand[CNO];		/* é€‰é¡¹çš„ç¼–å· */
 
 	if (read_tango() == 1) {
-		printf("\aµ¥´ÊÎÄ¼ş¶ÁÈ¡Ê§°Ü¡£\n");
+		printf("\aå•è¯æ–‡ä»¶è¯»å–å¤±è´¥ã€‚\n");
 		return 1;
 	}
-	srand(time(NULL));	/* Éè¶¨Ëæ»úÊıµÄÖÖ×Ó */
+	srand(time(NULL));	/* è®¾å®šéšæœºæ•°çš„ç§å­ */
 
-	pq = QNO;			/* ÉÏÒ»´ÎµÄÌâÄ¿±àºÅ£¨²»´æÔÚµÄ±àºÅ£©*/
+	pq = QNO;			/* ä¸Šä¸€æ¬¡çš„é¢˜ç›®ç¼–å·ï¼ˆä¸å­˜åœ¨çš„ç¼–å·ï¼‰*/
 
 	do {
 		int no;
 
-		do {						/* ¾ö¶¨ÓÃÓÚ³öÌâµÄµ¥´ÊµÄ±àºÅ */
+		do {						/* å†³å®šç”¨äºå‡ºé¢˜çš„å•è¯çš„ç¼–å· */
 			nq = rand() % QNO;
-		} while (nq == pq);			/* ²»Á¬Ğø³öÍ¬Ò»¸öµ¥´Ê */
+		} while (nq == pq);			/* ä¸è¿ç»­å‡ºåŒä¸€ä¸ªå•è¯ */
 
-		na = make_cand(cand, nq);	/* Éú³ÉÑ¡Ïî */
+		na = make_cand(cand, nq);	/* ç”Ÿæˆé€‰é¡¹ */
 		sw = rand() % 2;
 
-		printf("ÄÄÒ»¸öÊÇ%s£¿\n", sw ? eptr[nq] : cptr[nq]);
+		printf("å“ªä¸€ä¸ªæ˜¯%sï¼Ÿ\n", sw ? eptr[nq] : cptr[nq]);
 
 		do {
-			print_cand(cand, sw);	/* ÏÔÊ¾Ñ¡Ïî */
+			print_cand(cand, sw);	/* æ˜¾ç¤ºé€‰é¡¹ */
 			scanf("%d", &no);
 			if (no != na)
-				puts("»Ø´ğ´íÎó¡£");
+				puts("å›ç­”é”™è¯¯ã€‚");
 		} while (no != na);
-		puts("»Ø´ğÕıÈ·¡£");
+		puts("å›ç­”æ­£ç¡®ã€‚");
 
 		pq = nq;
 
-		printf("ÔÙÀ´Ò»´Î£¿0-·ñ/1-ÊÇ£º");
+		printf("å†æ¥ä¸€æ¬¡ï¼Ÿ0-å¦/1-æ˜¯ï¼š");
 		scanf("%d", &retry);
 	} while (retry == 1);
 

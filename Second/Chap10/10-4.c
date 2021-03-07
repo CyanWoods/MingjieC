@@ -1,4 +1,4 @@
-/* Îª×Ö·û´®¶¯Ì¬·ÖÅä¿Õ¼ä */
+/* ä¸ºå­—ç¬¦ä¸²åŠ¨æ€åˆ†é…ç©ºé—´ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,17 +9,17 @@ int main(void)
 	char st[16];
 	char *pt;
 
-	printf("ÇëÊäÈë×Ö·û´®st£º");
+	printf("è¯·è¾“å…¥å­—ç¬¦ä¸²stï¼š");
 	scanf("%s", st);
 
-	pt = malloc(strlen(st) + 1);	/* ¶¯Ì¬·ÖÅä´æ´¢¿Õ¼ä */
+	pt = malloc(strlen(st) + 1);	/* åŠ¨æ€åˆ†é…å­˜å‚¨ç©ºé—´ */
 
 	if (pt) {
-		strcpy(pt, st);				/* ¸´ÖÆ×Ö·û´® */
-		printf("Éú³ÉÁË¸Ã×Ö·û´®µÄ¸±±¾pt¡£\n");
+		strcpy(pt, st);				/* å¤åˆ¶å­—ç¬¦ä¸² */
+		printf("ç”Ÿæˆäº†è¯¥å­—ç¬¦ä¸²çš„å‰¯æœ¬ptã€‚\n");
 		printf("st = %s\n", st);
 		printf("pt = %s\n", pt);
-		free(pt);					/* ÊÍ·Å´æ´¢¿Õ¼ä */
+		free(pt);					/* é‡Šæ”¾å­˜å‚¨ç©ºé—´ */
 	}
 
 	return 0;

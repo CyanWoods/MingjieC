@@ -1,8 +1,8 @@
-/* concat ¡¤¡¤¡¤ ÎÄ¼şµÄ¸´ÖÆ */
+/* concat Â·Â·Â· æ–‡ä»¶çš„å¤åˆ¶ */
 
 #include <stdio.h>
 
-/*--- °Ñ´ÓsrcÊäÈëµÄÊı¾İÊä³öµ½dst ---*/
+/*--- æŠŠä»srcè¾“å…¥çš„æ•°æ®è¾“å‡ºåˆ°dst ---*/
 void copy(FILE *src, FILE *dst)
 {
 	int	ch;
@@ -16,15 +16,15 @@ int main(int argc, char *argv[])
 	FILE *fp;
 
 	if (argc < 2)
-		copy(stdin, stdout);		/* ±ê×¼ÊäÈë ¡ú ±ê×¼Êä³ö */
+		copy(stdin, stdout);		/* æ ‡å‡†è¾“å…¥ â†’ æ ‡å‡†è¾“å‡º */
 	else {
 		while (--argc > 0) {
 			if ((fp = fopen(*++argv, "r")) == NULL) {
-				fprintf(stderr, "ÎÄ¼ş%sÎŞ·¨ÕıÈ·´ò¿ª¡£\n", 
+				fprintf(stderr, "æ–‡ä»¶%sæ— æ³•æ­£ç¡®æ‰“å¼€ã€‚\n", 
 								*argv);
 				return 1;
 			} else {
-				copy(fp, stdout);	/* Á÷fp ¡ú ±ê×¼Êä³ö */
+				copy(fp, stdout);	/* æµfp â†’ æ ‡å‡†è¾“å‡º */
 				fclose(fp);
 			}
 		}

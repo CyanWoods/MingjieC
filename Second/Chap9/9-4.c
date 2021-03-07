@@ -1,9 +1,9 @@
-/* detab ¡¤¡¤¡¤ Õ¹¿ªË®Æ½ÖÆ±í·û */
+/* detab Â·Â·Â· å±•å¼€æ°´å¹³åˆ¶è¡¨ç¬¦ */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-/*--- Õ¹¿ªtab£¬°Ñ´ÓsrcÊäÈëµÄÊı¾İÊä³öµ½dst ---*/
+/*--- å±•å¼€tabï¼ŒæŠŠä»srcè¾“å…¥çš„æ•°æ®è¾“å‡ºåˆ°dst ---*/
 void detab(FILE *src, FILE *dst, int width)
 {
 	int ch, pos = 1;
@@ -12,7 +12,7 @@ void detab(FILE *src, FILE *dst, int width)
 		int num;
 
 		switch (ch) {
-		 case '\t':							/* ÖÆ±í·û */ 
+		 case '\t':							/* åˆ¶è¡¨ç¬¦ */ 
 			num = width - (pos - 1) % width;
 			for ( ; num > 0; num--) {
 				fputc(' ', dst);
@@ -20,10 +20,10 @@ void detab(FILE *src, FILE *dst, int width)
 			}
 			break;
 
-		 case '\n':							/* »»ĞĞ·û */
+		 case '\n':							/* æ¢è¡Œç¬¦ */
 			fputc(ch, dst); pos=1; break;
 
-		 default:							/* ÆäËû×Ö·û */
+		 default:							/* å…¶ä»–å­—ç¬¦ */
 			fputc(ch, dst); pos++; break;
 		}
 	}
@@ -35,22 +35,22 @@ int main(int argc, char *argv[])
 	FILE *fp;
 
 	if (argc < 2)
-		detab(stdin, stdout, width);		/* ±ê×¼ÊäÈë ¡ú ±ê×¼Êä³ö */
+		detab(stdin, stdout, width);		/* æ ‡å‡†è¾“å…¥ â†’ æ ‡å‡†è¾“å‡º */
 	else {
 		while (--argc > 0) {
 			if (**(++argv) == '-') {
 				if (*++(*argv) == 't')
 					width = atoi(++*argv);
 				else {
-					fputs("²ÎÊı²»ÕıÈ·¡£\n", stderr);
+					fputs("å‚æ•°ä¸æ­£ç¡®ã€‚\n", stderr);
 					return 1;
 				}
 			} else if ((fp = fopen(*argv, "r")) == NULL) {
-				fprintf(stderr, "ÎÄ¼ş%sÎŞ·¨ÕıÈ·´ò¿ª¡£\n",
+				fprintf(stderr, "æ–‡ä»¶%sæ— æ³•æ­£ç¡®æ‰“å¼€ã€‚\n",
 								*argv);
 				return 1;
 			} else {
-				detab(fp, stdout, width);	/* Á÷fp ¡ú ±ê×¼Êä³ö */
+				detab(fp, stdout, width);	/* æµfp â†’ æ ‡å‡†è¾“å‡º */
 				fclose(fp);
 			}
 		}

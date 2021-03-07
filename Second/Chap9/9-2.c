@@ -1,4 +1,4 @@
-/* Ñ°ÕÒĞÒÔËÊı×ÖÑµÁ·£¨ÆäÈı£ºÏÔÊ¾ÉÏÒ»´ÎµÄÈÕÆÚºÍ×î¸ßµÃ·Ö£©*/
+/* å¯»æ‰¾å¹¸è¿æ•°å­—è®­ç»ƒï¼ˆå…¶ä¸‰ï¼šæ˜¾ç¤ºä¸Šä¸€æ¬¡çš„æ—¥æœŸå’Œæœ€é«˜å¾—åˆ†ï¼‰*/
 
 #include <time.h>
 #include <float.h>
@@ -10,33 +10,33 @@
 #define MAX_STAGE	10
 #define swap(type, x, y)	do { type t = x; x = y; y = t; } while (0)
 
-char dtfile[] = "LACKNUM.DAT";				/* ÎÄ¼şÃû */
+char dtfile[] = "LACKNUM.DAT";				/* æ–‡ä»¶å */
 
-/*--- »ñÈ¡²¢ÏÔÊ¾ÉÏÒ»´ÎµÄÑµÁ·ĞÅÏ¢£¬·µ»Ø×î¸ßµÃ·Ö ---*/
+/*--- è·å–å¹¶æ˜¾ç¤ºä¸Šä¸€æ¬¡çš„è®­ç»ƒä¿¡æ¯ï¼Œè¿”å›æœ€é«˜å¾—åˆ† ---*/
 double get_data(void)
 {
 	FILE *fp;
-	double best;		/* ×î¸ßµÃ·Ö */
+	double best;		/* æœ€é«˜å¾—åˆ† */
 
 	if ((fp = fopen(dtfile, "r")) == NULL) {
-		printf("ÄãÊÇµÚÒ»´ÎÔËĞĞ±¾³ÌĞò°É¡£\n\n");
+		printf("ä½ æ˜¯ç¬¬ä¸€æ¬¡è¿è¡Œæœ¬ç¨‹åºå§ã€‚\n\n");
 		best = DBL_MAX;
 	} else {
 		int year, month, day, h, m, s;
 
 		fscanf(fp, "%d%d%d%d%d%d", &year, &month, &day, &h, &m, &s);
 		fscanf(fp, "%lf", &best);
-		printf("ÉÏ´Î½áÊø³ÌĞòÊÇÔÚ%dÄê%dÔÂ%dÈÕ%dÊ±%d·Ö%dÃë¡£\n",
+		printf("ä¸Šæ¬¡ç»“æŸç¨‹åºæ˜¯åœ¨%då¹´%dæœˆ%dæ—¥%dæ—¶%dåˆ†%dç§’ã€‚\n",
 											year, month, day, h, m, s);
 
-		printf("ÀúÊ·×î¸ßµÃ·Ö£¨ËùÓÃ×î¶ÌÊ±¼ä£©Îª%.1fÃë¡£\n\n", best);
+		printf("å†å²æœ€é«˜å¾—åˆ†ï¼ˆæ‰€ç”¨æœ€çŸ­æ—¶é—´ï¼‰ä¸º%.1fç§’ã€‚\n\n", best);
 		fclose(fp);
 	}
 
 	return best;
 }
 
-/*--- Ğ´Èë±¾´ÎÑµÁ·ĞÅÏ¢ ---*/
+/*--- å†™å…¥æœ¬æ¬¡è®­ç»ƒä¿¡æ¯ ---*/
 void put_data(double best)
 {
 	FILE *fp;
@@ -44,7 +44,7 @@ void put_data(double best)
 	struct tm *local = localtime(&t);
 
 	if ((fp = fopen(dtfile, "w")) == NULL)
-		printf("·¢Éú´íÎó!!");
+		printf("å‘ç”Ÿé”™è¯¯!!");
 	else {
 		fprintf(fp, "%d %d %d %d %d %d\n",
 					local->tm_year + 1900, local->tm_mon + 1, local->tm_mday,
@@ -55,52 +55,52 @@ void put_data(double best)
 	}
 }
 
-/*--- ÔËĞĞÑµÁ·³ÌĞò²¢·µ»ØµÃ·Ö£¨ËùÓÃÊ±¼ä£© ---*/
+/*--- è¿è¡Œè®­ç»ƒç¨‹åºå¹¶è¿”å›å¾—åˆ†ï¼ˆæ‰€ç”¨æ—¶é—´ï¼‰ ---*/
 double go(void)
 {
 	int i, j, stage;
 	int dgt[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 	int a[8];
-	double jikan;				/* Ê±¼ä */
-	clock_t start, end;			/* ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä */
+	double jikan;				/* æ—¶é—´ */
+	clock_t start, end;			/* å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´ */
 
-	printf("ÇëÊäÈëÈ±ÉÙµÄÊı×Ö¡£\n");
-	printf("°´ÏÂ¿Õ¸ñ¼ü¿ªÊ¼¡£\n");
+	printf("è¯·è¾“å…¥ç¼ºå°‘çš„æ•°å­—ã€‚\n");
+	printf("æŒ‰ä¸‹ç©ºæ ¼é”®å¼€å§‹ã€‚\n");
 	while (getch() != ' ')
 		;
 
 	start = clock();
 
 	for (stage = 0; stage < MAX_STAGE; stage++) {
-		int x = rand() % 9;		/* Éú³ÉËæ»úÊı0 ~ 8 */
-		int	no;					/* ÒÑ¶ÁÈ¡µÄÖµ */
+		int x = rand() % 9;		/* ç”Ÿæˆéšæœºæ•°0 ~ 8 */
+		int	no;					/* å·²è¯»å–çš„å€¼ */
 
 		i = j = 0;
-		while (i < 9) {			/* ¸´ÖÆÊ±Ìø¹ıdgt[x] */
+		while (i < 9) {			/* å¤åˆ¶æ—¶è·³è¿‡dgt[x] */
 			if (i != x)
 				a[j++] = dgt[i];
 			i++;
 		}
 
-		for (i = 7; i > 0; i--) {		/* ÖØĞÂÅÅÁĞÊı×éa */
+		for (i = 7; i > 0; i--) {		/* é‡æ–°æ’åˆ—æ•°ç»„a */
 			int j = rand() % (i + 1);
 			if (i != j)
 				swap(int, a[i], a[j]);
 		}
 
-		for (i = 0; i < 8; i++)		/* ÏÔÊ¾ËùÓĞÔªËØ */
+		for (i = 0; i < 8; i++)		/* æ˜¾ç¤ºæ‰€æœ‰å…ƒç´  */
 			printf("%d ", a[i]);
-		printf("£º");
+		printf("ï¼š");
 		fflush(stdout);
 
 		do {
 			no = getch();
-			if (isprint(no)) {				/* Èç¹ûÄÜÏÔÊ¾µÄ»° */
-				putch(no);					/* ÏÔÊ¾°´ÏÂµÄ¼ü */
-				if (no != dgt[x] + '0')		/* Èç¹û»Ø´ğ´íÎó */
-					putch('\b');			/* °Ñ¹â±êÍùÇ°ÍËÒ»¸ñ */
+			if (isprint(no)) {				/* å¦‚æœèƒ½æ˜¾ç¤ºçš„è¯ */
+				putch(no);					/* æ˜¾ç¤ºæŒ‰ä¸‹çš„é”® */
+				if (no != dgt[x] + '0')		/* å¦‚æœå›ç­”é”™è¯¯ */
+					putch('\b');			/* æŠŠå…‰æ ‡å¾€å‰é€€ä¸€æ ¼ */
 				else
-					printf("\n");			/* »»ĞĞ */
+					printf("\n");			/* æ¢è¡Œ */
 				fflush(stdout);
 			}
 		} while (no != dgt[x] + '0');
@@ -109,44 +109,44 @@ double go(void)
 
 	jikan = (double)(end - start) / CLOCKS_PER_SEC;
 
-	printf("ÓÃÊ±%.1fÃë¡£\n", jikan);
+	printf("ç”¨æ—¶%.1fç§’ã€‚\n", jikan);
 
 	if (jikan > 25.0)
-		printf("·´Ó¦Ì«ÂıÁË¡£\n");
+		printf("ååº”å¤ªæ…¢äº†ã€‚\n");
 	else if (jikan > 20.0)
-		printf("·´Ó¦ÓĞµãÂıÑ½¡£\n");
+		printf("ååº”æœ‰ç‚¹æ…¢å‘€ã€‚\n");
 	else if (jikan > 17.0)
-		printf("·´Ó¦»¹ĞĞ°É¡£\n");
+		printf("ååº”è¿˜è¡Œå§ã€‚\n");
 	else
-		printf("·´Ó¦Õæ¿ì°¡¡£\n");
+		printf("ååº”çœŸå¿«å•Šã€‚\n");
 
 	return jikan;
 }
 
 int main(void)
 {
-	int retry;		/* ÔÙÀ´Ò»´Î£¿*/
-	double score;	/* µÃ·Ö£¨ËùÓÃÊ±¼ä£©*/
-	double best;	/* ×î¸ßµÃ·Ö£¨ËùÓÃ×î¶ÌÊ±¼ä£©*/
+	int retry;		/* å†æ¥ä¸€æ¬¡ï¼Ÿ*/
+	double score;	/* å¾—åˆ†ï¼ˆæ‰€ç”¨æ—¶é—´ï¼‰*/
+	double best;	/* æœ€é«˜å¾—åˆ†ï¼ˆæ‰€ç”¨æœ€çŸ­æ—¶é—´ï¼‰*/
 
-	best = get_data();			/* »ñÈ¡ÀúÊ·×î¸ßµÃ·Ö */
+	best = get_data();			/* è·å–å†å²æœ€é«˜å¾—åˆ† */
 
 	init_getputch();
-	srand(time(NULL));			/* Éè¶¨Ëæ»úÊıµÄÖÖ×Ó */
+	srand(time(NULL));			/* è®¾å®šéšæœºæ•°çš„ç§å­ */
 
 	do {
-		score = go();			/* ÔËĞĞÑµÁ·³ÌĞò */
+		score = go();			/* è¿è¡Œè®­ç»ƒç¨‹åº */
 
 		if (score < best) {
-			printf("¸üĞÂÁË×î¸ßµÃ·Ö£¨ËùÓÃÊ±¼ä£©!!\n");
-			best = score;		/* ¸üĞÂ×î¸ßµÃ·Ö */
+			printf("æ›´æ–°äº†æœ€é«˜å¾—åˆ†ï¼ˆæ‰€ç”¨æ—¶é—´ï¼‰!!\n");
+			best = score;		/* æ›´æ–°æœ€é«˜å¾—åˆ† */
 		}
 
-		printf("ÔÙÀ´Ò»´ÎÂğ¡¤¡¤¡¤(0)·ñ(1)ÊÇ£º");
+		printf("å†æ¥ä¸€æ¬¡å—Â·Â·Â·(0)å¦(1)æ˜¯ï¼š");
 		scanf("%d", &retry);
 	} while (retry == 1);
 
-	put_data(best);				/* Ğ´Èë±¾´ÎÑµÁ·µÄÈÕÆÚ¡¢Ê±¼äÒÔ¼°µÃ·Ö */
+	put_data(best);				/* å†™å…¥æœ¬æ¬¡è®­ç»ƒçš„æ—¥æœŸã€æ—¶é—´ä»¥åŠå¾—åˆ† */
 
 	term_getputch();
 

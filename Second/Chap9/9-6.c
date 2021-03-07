@@ -1,10 +1,10 @@
-/* hdump£ºÎÄ¼şµÄ×ª´¢ */
+/* hdumpï¼šæ–‡ä»¶çš„è½¬å‚¨ */
 
 #include <ctype.h>
 #include <stdio.h>
 #include <limits.h>
 
-/*--- °ÑÁ÷srcµÄÄÚÈİ×ª´¢µ½dst ---*/
+/*--- æŠŠæµsrcçš„å†…å®¹è½¬å‚¨åˆ°dst ---*/
 void hdump(FILE *src, FILE *dst)
 {
 	int n;
@@ -14,15 +14,15 @@ void hdump(FILE *src, FILE *dst)
 	while ((n = fread(buf, 1, 16, src)) > 0) {
 		int i;
 
-		fprintf(dst, "%08lX ", count);						/* µØÖ· */
+		fprintf(dst, "%08lX ", count);						/* åœ°å€ */
 
-		for (i = 0; i < n; i++)								/* Ê®Áù½øÖÆÊı×Ö */
+		for (i = 0; i < n; i++)								/* åå…­è¿›åˆ¶æ•°å­— */
 			fprintf(dst, "%0*X ", (CHAR_BIT + 3) / 4, (unsigned)buf[i]);
 
 		if (n < 16)
 			for (i = n; i < 16; i++) fputs("   ", dst);
 
-		for (i = 0; i < n; i++)								/* ×Ö·û */
+		for (i = 0; i < n; i++)								/* å­—ç¬¦ */
 			fputc(isprint(buf[i]) ? buf[i] : '.', dst);
 
 		fputc('\n', dst);
@@ -37,15 +37,15 @@ int main(int argc, char *argv[])
 	FILE *fp;
 
 	if (argc < 2)
-		hdump(stdin, stdout);		/* ±ê×¼ÊäÈë ¡ú ±ê×¼Êä³ö */
+		hdump(stdin, stdout);		/* æ ‡å‡†è¾“å…¥ â†’ æ ‡å‡†è¾“å‡º */
 	else {
 		while (--argc > 0) {
 			if ((fp = fopen(*++argv, "rb")) == NULL) {
-				fprintf(stderr, "ÎÄ¼ş%sÎŞ·¨ÕıÈ·´ò¿ª¡£\n", 
+				fprintf(stderr, "æ–‡ä»¶%sæ— æ³•æ­£ç¡®æ‰“å¼€ã€‚\n", 
 								*argv);
 				return 1;
 			} else {
-				hdump(fp, stdout);	/* Á÷fp ¡ú ±ê×¼Êä³ö */
+				hdump(fp, stdout);	/* æµfp â†’ æ ‡å‡†è¾“å‡º */
 				fclose(fp);
 			}
 		}

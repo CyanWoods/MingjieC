@@ -1,4 +1,4 @@
-/* Îª×Ö·û´®Êı×é£¨Ö¸ÕëÊı×é£©¶¯Ì¬·ÖÅä¿Õ¼ä */
+/* ä¸ºå­—ç¬¦ä¸²æ•°ç»„ï¼ˆæŒ‡é’ˆæ•°ç»„ï¼‰åŠ¨æ€åˆ†é…ç©ºé—´ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,16 +6,16 @@
 
 int main(void)
 {
-	int	num;			/* ×Ö·û´®µÄ¸öÊı */
+	int	num;			/* å­—ç¬¦ä¸²çš„ä¸ªæ•° */
 	char **pt;
 
-	printf("ÓĞ¼¸¸ö×Ö·û´®£º");
+	printf("æœ‰å‡ ä¸ªå­—ç¬¦ä¸²ï¼š");
 	scanf("%d", &num);
 
 	pt = (char **)calloc(num, sizeof(char *));
 
 	if (pt == NULL) 
-		puts("´æ´¢¿Õ¼ä·ÖÅäÊ§°Ü¡£");
+		puts("å­˜å‚¨ç©ºé—´åˆ†é…å¤±è´¥ã€‚");
 	else {
 		int	i;
 
@@ -33,7 +33,7 @@ int main(void)
 			if (pt[i] != NULL)
 				strcpy(pt[i], temp);
 			else {
-				puts("´æ´¢¿Õ¼ä·ÖÅäÊ§°Ü¡£");
+				puts("å­˜å‚¨ç©ºé—´åˆ†é…å¤±è´¥ã€‚");
  				goto Free;
 			}
 		}

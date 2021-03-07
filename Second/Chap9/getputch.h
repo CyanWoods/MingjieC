@@ -1,4 +1,4 @@
-/* ÓÃÓÚgetch/putchµÄÍ¨ÓÃÍ·ÎÄ¼ş"getputch.h" */
+/* ç”¨äºgetch/putchçš„é€šç”¨å¤´æ–‡ä»¶"getputch.h" */
 
 #ifndef __GETPUTCH
 
@@ -6,18 +6,18 @@
 
   #if defined(_MSC_VER) || (__TURBOC__) || (LSI_C)
 
-	/* MS-Windows£¯MS-DOS£¨Visual C++, Borland C++, LSI-C 86 etc ...£©*/
+	/* MS-Windowsï¼MS-DOSï¼ˆVisual C++, Borland C++, LSI-C 86 etc ...ï¼‰*/
 
 	#include <conio.h>
 
-	static void init_getputch(void) { /* ¿Õ */ }
+	static void init_getputch(void) { /* ç©º */ }
 
-	static void term_getputch(void) { /* ¿Õ */ }
+	static void term_getputch(void) { /* ç©º */ }
 
 
   #else
 
-	/* Ìá¹©ÁËCurses¿âµÄUNIX/Linux/OS X»·¾³ */
+	/* æä¾›äº†Cursesåº“çš„UNIX/Linux/OS Xç¯å¢ƒ */
 
 	#include <curses.h>
 
@@ -26,7 +26,7 @@
 	#undef printf
 	static char __buf[4096];
 
-	/*--- _ _putchar£ºÏàµ±ÓÚputcharº¯Êı£¨ÓÃ¡°»»ĞĞ·û+»Ø³µ·û¡±´úÌæ»»ĞĞ·û½øĞĞÊä³ö£©---*/
+	/*--- _ _putcharï¼šç›¸å½“äºputcharå‡½æ•°ï¼ˆç”¨â€œæ¢è¡Œç¬¦+å›è½¦ç¬¦â€ä»£æ›¿æ¢è¡Œç¬¦è¿›è¡Œè¾“å‡ºï¼‰---*/
 	static int __putchar(int ch)
 	{
 		if (ch == '\n')
@@ -34,7 +34,7 @@
 		return putchar(ch);
 	}
 
-	/*--- putch£ºÏÔÊ¾1¸ö×Ö·û£¬Çå³ı»º³åÇø ---*/
+	/*--- putchï¼šæ˜¾ç¤º1ä¸ªå­—ç¬¦ï¼Œæ¸…é™¤ç¼“å†²åŒº ---*/
 	static int putch(int ch)
 	{
 		int result = putchar(ch);
@@ -43,7 +43,7 @@
 		return result;
 	}
 
-	/*--- _ _printf£ºÏàµ±ÓÚprintfº¯Êı£¨ÓÃ¡°»»ĞĞ·û+»Ø³µ·û¡±´úÌæ»»ĞĞ·û½øĞĞÊä³ö£©---*/
+	/*--- _ _printfï¼šç›¸å½“äºprintfå‡½æ•°ï¼ˆç”¨â€œæ¢è¡Œç¬¦+å›è½¦ç¬¦â€ä»£æ›¿æ¢è¡Œç¬¦è¿›è¡Œè¾“å‡ºï¼‰---*/
 	static int __printf(const char *format, ...)
 	{
 		va_list	ap;
@@ -61,7 +61,7 @@
 		return count;
 	}
 
-	/*--- _ _puts£ºÏàµ±ÓÚputsº¯Êı£¨ÓÃ¡°»»ĞĞ·û+»Ø³µ·û¡±´úÌæ»»ĞĞ·û½øĞĞÊä³ö£©---*/
+	/*--- _ _putsï¼šç›¸å½“äºputså‡½æ•°ï¼ˆç”¨â€œæ¢è¡Œç¬¦+å›è½¦ç¬¦â€ä»£æ›¿æ¢è¡Œç¬¦è¿›è¡Œè¾“å‡ºï¼‰---*/
 	static int __puts(const char *s)
 	{
 		int i, j;
@@ -74,7 +74,7 @@
 		return puts(__buf);
 	}
 
-	/*--- ¿â³õÊ¼´¦Àí ---*/
+	/*--- åº“åˆå§‹å¤„ç† ---*/
 	static void init_getputch(void)
 	{
 		initscr();
@@ -83,7 +83,7 @@
 		refresh();
 	}
 
-	/*--- ¿âÖÕÖ¹´¦Àí ---*/
+	/*--- åº“ç»ˆæ­¢å¤„ç† ---*/
 	static void term_getputch(void)
 	{
 		endwin();
