@@ -1,5 +1,3 @@
-/* 字符串数组（指针数组）*/
-
 #include <stdio.h>
 
 int main(void)
