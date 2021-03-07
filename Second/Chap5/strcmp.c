@@ -1,9 +1,9 @@
-/* strcmpº¯ÊýµÄÊµÏÖÊ¾Àý */
+/* strcmpå‡½æ•°çš„å®žçŽ°ç¤ºä¾‹ */
 
 int strcmp(const char *s1, const char *s2)
 {
 	while (*s1 == *s2) {
-		if (*s1 == '\0')		/* ÏàµÈ */
+		if (*s1 == '\0')		/* ç›¸ç­‰ */
 			return 0;
 		s1++;
 		s2++;

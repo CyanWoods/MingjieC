@@ -1,35 +1,35 @@
-/* ÓÃĞ­µ÷ÊÀ½çÊ±ÏÔÊ¾µ±Ç°ÈÕÆÚºÍÊ±¼ä */
+/* ç”¨åè°ƒä¸–ç•Œæ—¶æ˜¾ç¤ºå½“å‰æ—¥æœŸå’Œæ—¶é—´ */
 
 #include <time.h>
 #include <stdio.h>
 
-/*--- ÏÔÊ¾ÈÕÆÚºÍÊ±¼ä ---*/
+/*--- æ˜¾ç¤ºæ—¥æœŸå’Œæ—¶é—´ ---*/
 void put_date(const struct tm *timer)
 {
-	char *wday_name[] = {"ÈÕ", "Ò»", "¶ş", "Èı", "ËÄ", "Îå", "Áù"};
+	char *wday_name[] = {"æ—¥", "ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­"};
 
-	printf("%4dÄê%02dÔÂ%02dÈÕ(%s)%02dÊ±%02d·Ö%02dÃë",
-			timer->tm_year + 1900,		/* Äê */
-			timer->tm_mon + 1,			/* ÔÂ */
-			timer->tm_mday, 			/* ÈÕ */
-			wday_name[timer->tm_wday],	/* ĞÇÆÚ */
-			timer->tm_hour,				/* Ê±*/
-			timer->tm_min,				/* ·Ö*/
-			timer->tm_sec				/* Ãë*/
+	printf("%4då¹´%02dæœˆ%02dæ—¥(%s)%02dæ—¶%02dåˆ†%02dç§’",
+			timer->tm_year + 1900,		/* å¹´ */
+			timer->tm_mon + 1,			/* æœˆ */
+			timer->tm_mday, 			/* æ—¥ */
+			wday_name[timer->tm_wday],	/* æ˜ŸæœŸ */
+			timer->tm_hour,				/* æ—¶*/
+			timer->tm_min,				/* åˆ†*/
+			timer->tm_sec				/* ç§’*/
 		  );
 }
 
 int main(void)
 {
-	time_t current;					/* ÈÕÀúÊ±¼ä£¨µ¥¶ÀµÄËãÊıĞÍ£© */
-	struct tm *timer;				/* ·Ö½âÊ±¼ä£¨½á¹¹Ìå£© */
+	time_t current;					/* æ—¥å†æ—¶é—´ï¼ˆå•ç‹¬çš„ç®—æ•°å‹ï¼‰ */
+	struct tm *timer;				/* åˆ†è§£æ—¶é—´ï¼ˆç»“æ„ä½“ï¼‰ */
 
-	time(&current);					/* »ñÈ¡µ±Ç°Ê±¼ä */
-	timer = gmtime(&current);		/* ×ª»»³É·Ö½âÊ±¼ä£¨Ğ­µ÷ÊÀ½çÊ±£© */
+	time(&current);					/* è·å–å½“å‰æ—¶é—´ */
+	timer = gmtime(&current);		/* è½¬æ¢æˆåˆ†è§£æ—¶é—´ï¼ˆåè°ƒä¸–ç•Œæ—¶ï¼‰ */
 
-	printf("µ±Ç°ÈÕÆÚºÍÊ±¼äÓÃUTC±íÊ¾ÊÇ");
+	printf("å½“å‰æ—¥æœŸå’Œæ—¶é—´ç”¨UTCè¡¨ç¤ºæ˜¯");
 	put_date(timer);
-	printf("¡£\n");
+	printf("ã€‚\n");
 
 	return 0;
 }

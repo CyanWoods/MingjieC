@@ -1,18 +1,18 @@
-/* µ¥´¿¼ÇÒäÑµÁ·£¨¼ÇÒä4Î»Êı£©*/
+/* å•çº¯è®°å¿†è®­ç»ƒï¼ˆè®°å¿†4ä½æ•°ï¼‰*/
 
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_STAGE	10							/* ¹Ø¿¨Êı */
+#define MAX_STAGE	10							/* å…³å¡æ•° */
 
-/*--- µÈ´ıxºÁÃë ---*/
+/*--- ç­‰å¾…xæ¯«ç§’ ---*/
 int sleep(unsigned long x)
 {
 	clock_t c1 = clock(), c2;
 
 	do {
-		if ((c2 = clock()) == (clock_t)-1)	/* ´íÎó */
+		if ((c2 = clock()) == (clock_t)-1)	/* é”™è¯¯ */
 			return 0;
 	} while (1000.0 * (c2 - c1) / CLOCKS_PER_SEC < x); 
 	return 1;
@@ -21,37 +21,37 @@ int sleep(unsigned long x)
 int main(void)
 {
 	int stage;
-	int success = 0;						/* ´ğ¶ÔÊıÁ¿ */
-	clock_t start, end;						/* ¿ªÊ¼Ê±¼ä/½áÊøÊ±¼ä */
+	int success = 0;						/* ç­”å¯¹æ•°é‡ */
+	clock_t start, end;						/* å¼€å§‹æ—¶é—´/ç»“æŸæ—¶é—´ */
 
-	srand(time(NULL));						/* Éè¶¨Ëæ»úÊıµÄÖÖ×Ó */
+	srand(time(NULL));						/* è®¾å®šéšæœºæ•°çš„ç§å­ */
 
-	printf("À´¼ÇÒäÒ»¸ö4Î»µÄÊıÖµ°É¡£\n");
+	printf("æ¥è®°å¿†ä¸€ä¸ª4ä½çš„æ•°å€¼å§ã€‚\n");
 
 	start = clock();
 	for (stage = 0; stage < MAX_STAGE; stage++) {
-		int x;								/* ÒÑ¶ÁÈ¡µÄÖµ */
-		int no = rand() % 9000 + 1000;		/* ĞèÒª¼ÇÒäµÄÊıÖµ */
+		int x;								/* å·²è¯»å–çš„å€¼ */
+		int no = rand() % 9000 + 1000;		/* éœ€è¦è®°å¿†çš„æ•°å€¼ */
 
 		printf("%d", no);
 		fflush(stdout);
-		sleep(500);	/* ÎÊÌâÖ»ÌáÊ¾0.5Ãë */
+		sleep(500);	/* é—®é¢˜åªæç¤º0.5ç§’ */
 
-		printf("\rÇëÊäÈë£º");
+		printf("\rè¯·è¾“å…¥ï¼š");
 		fflush(stdout);
 		scanf("%d", &x);
 
 		if (x != no)
-			printf("\a»Ø´ğ´íÎó¡£\n");
+			printf("\aå›ç­”é”™è¯¯ã€‚\n");
 		else {
-			printf("»Ø´ğÕıÈ·¡£\n");
+			printf("å›ç­”æ­£ç¡®ã€‚\n");
 			success++;
 		}
 	}
 	end = clock();
 
-	printf("%d´ÎÖĞ´ğ¶ÔÁË%d´Î¡£\n", MAX_STAGE, success);
-	printf("ÓÃÊ±%.1fÃë¡£\n", (double)(end - start) / CLOCKS_PER_SEC);
+	printf("%dæ¬¡ä¸­ç­”å¯¹äº†%dæ¬¡ã€‚\n", MAX_STAGE, success);
+	printf("ç”¨æ—¶%.1fç§’ã€‚\n", (double)(end - start) / CLOCKS_PER_SEC);
 
 	return 0;
 }

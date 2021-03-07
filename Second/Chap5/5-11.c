@@ -1,21 +1,21 @@
-/* ¼ÓÒ»ÑµÁ·£¨ÆäËÄ£©
-     £­ ÏÔÊ¾×îºóµÄMAX_RECORD¹Ø¿¨µÄ´ğ¶ÔÊıÁ¿ £­				*/
+/* åŠ ä¸€è®­ç»ƒï¼ˆå…¶å››ï¼‰
+     ï¼ æ˜¾ç¤ºæœ€åçš„MAX_RECORDå…³å¡çš„ç­”å¯¹æ•°é‡ ï¼				*/
 
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#define LEVEL_MIN	 2				/* ×îµÍµÈ¼¶£¨ÊıÖµµÄ¸öÊı£©*/
-#define LEVEL_MAX	 5				/* ×î¸ßµÈ¼¶£¨ÊıÖµµÄ¸öÊı£©*/
-#define	MAX_RECORD	10				/* ¼ÇÂ¼µÃ·ÖµÄ¹Ø¿¨Êı */
+#define LEVEL_MIN	 2				/* æœ€ä½ç­‰çº§ï¼ˆæ•°å€¼çš„ä¸ªæ•°ï¼‰*/
+#define LEVEL_MAX	 5				/* æœ€é«˜ç­‰çº§ï¼ˆæ•°å€¼çš„ä¸ªæ•°ï¼‰*/
+#define	MAX_RECORD	10				/* è®°å½•å¾—åˆ†çš„å…³å¡æ•° */
 
-/*--- µÈ´ıxºÁÃë ---*/
+/*--- ç­‰å¾…xæ¯«ç§’ ---*/
 int sleep(unsigned long x)
 {
 	clock_t c1 = clock(), c2;
 
 	do {
-		if ((c2 = clock()) == (clock_t)-1)	/* ´íÎó */
+		if ((c2 = clock()) == (clock_t)-1)	/* é”™è¯¯ */
 			return 0;
 	} while (1000.0 * (c2 - c1) / CLOCKS_PER_SEC < x); 
 	return 1;
@@ -24,68 +24,68 @@ int sleep(unsigned long x)
 int main(void)
 {
 	int i, j, stage, stage2;
-	int level;						/* µÈ¼¶ */
-	int success;					/* ´ğ¶ÔÊıÁ¿ */
-	int point[MAX_RECORD];			/* µÃ·Ö */
-	int retry;						/* ÔÙÀ´Ò»´Î£¿*/
-	clock_t	start, end;				/* ¿ªÊ¼Ê±¼ä/½áÊøÊ±¼ä */
+	int level;						/* ç­‰çº§ */
+	int success;					/* ç­”å¯¹æ•°é‡ */
+	int point[MAX_RECORD];			/* å¾—åˆ† */
+	int retry;						/* å†æ¥ä¸€æ¬¡ï¼Ÿ*/
+	clock_t	start, end;				/* å¼€å§‹æ—¶é—´/ç»“æŸæ—¶é—´ */
 
-	srand(time(NULL));				/* Éè¶¨Ëæ»úÊıµÄÖÖ×Ó */
+	srand(time(NULL));				/* è®¾å®šéšæœºæ•°çš„ç§å­ */
 
-	printf("¼ÇÒäÊıÖµ²¢ÊäÈëÕâĞ©ÊıÖµ¼Ó1ºóµÄÖµ¡£\n");
+	printf("è®°å¿†æ•°å€¼å¹¶è¾“å…¥è¿™äº›æ•°å€¼åŠ 1åçš„å€¼ã€‚\n");
 
 	do {
-		printf("ÒªÌôÕ½µÄµÈ¼¶(%d¡«%d)£º", LEVEL_MIN, LEVEL_MAX);
+		printf("è¦æŒ‘æˆ˜çš„ç­‰çº§(%dï½%d)ï¼š", LEVEL_MIN, LEVEL_MAX);
 		scanf("%d", &level);
 	} while (level < LEVEL_MIN || level > LEVEL_MAX);
 
 	success = stage = 0;
 	start = clock();
 	do {
-		int no[LEVEL_MAX];		/* Òª¼ÇÒäµÄÊıÖµ */
-		int x[LEVEL_MAX];		/* ÒÑ¶ÁÈ¡µÄÖµ */
-		int seikai = 0;			/* ±¾¹Ø¿¨µÄ´ğ¶ÔÊıÁ¿ */
+		int no[LEVEL_MAX];		/* è¦è®°å¿†çš„æ•°å€¼ */
+		int x[LEVEL_MAX];		/* å·²è¯»å–çš„å€¼ */
+		int seikai = 0;			/* æœ¬å…³å¡çš„ç­”å¯¹æ•°é‡ */
 
-		printf("\nµÚ%d¹Ø¿¨¿ªÊ¼!!\n", stage + 1);
+		printf("\nç¬¬%då…³å¡å¼€å§‹!!\n", stage + 1);
 
-		for (i = 0; i < level; i++) {		/* ½ölevel¸ö */
-			no[i] = rand() % 90 + 10;		/* Éú³É10 ~ 99µÄËæ»úÊı */
-			printf("%d ", no[i]);			/* ÏÔÊ¾ */
+		for (i = 0; i < level; i++) {		/* ä»…levelä¸ª */
+			no[i] = rand() % 90 + 10;		/* ç”Ÿæˆ10 ~ 99çš„éšæœºæ•° */
+			printf("%d ", no[i]);			/* æ˜¾ç¤º */
 		}
 		fflush(stdout);
-		sleep(300 * level);					/* µÈ´ı0.30 ¡Á levelÃë */
-		printf("\r%*s\r", 3 * level, "");	/* Ïû³ıÌâÄ¿ */
+		sleep(300 * level);					/* ç­‰å¾…0.30 Ã— levelç§’ */
+		printf("\r%*s\r", 3 * level, "");	/* æ¶ˆé™¤é¢˜ç›® */
 		fflush(stdout);
 
-		for (i = 0; i < level; i++) {		/* ¶ÁÈ¡´ğ°¸ */
-			printf("µÚ%d¸öÊı£º", i + 1);
+		for (i = 0; i < level; i++) {		/* è¯»å–ç­”æ¡ˆ */
+			printf("ç¬¬%dä¸ªæ•°ï¼š", i + 1);
 			scanf("%d", &x[i]);
 		}
 
-		for (i = 0; i < level; i++) {		/* ÅĞ¶Ï¶Ô´í²¢ÏÔÊ¾ */
+		for (i = 0; i < level; i++) {		/* åˆ¤æ–­å¯¹é”™å¹¶æ˜¾ç¤º */
 			if (x[i] != no[i] + 1)
-				printf("¡Á ");
+				printf("Ã— ");
 			else {
-				printf("¡ğ ");
+				printf("â—‹ ");
 				seikai++;
 			}
 		}
 		putchar('\n');
 
-		for (i = 0; i < level; i++)			/* ÏÔÊ¾ÕıÈ·´ğ°¸ */
+		for (i = 0; i < level; i++)			/* æ˜¾ç¤ºæ­£ç¡®ç­”æ¡ˆ */
 			printf("%2d ", no[i]);
 
-		printf(" ¡¤¡¤¡¤ ´ğ¶ÔÁË%d¸ö¡£\n", seikai);
+		printf(" Â·Â·Â· ç­”å¯¹äº†%dä¸ªã€‚\n", seikai);
 
-		point[stage++ % MAX_RECORD] = seikai;	/* ¼ÇÂ¼¹Ø¿¨µÄ´ğ¶ÔÊıÁ¿ */
-		success += seikai;						/* ¸üĞÂÕûÌåµÄ´ğ¶ÔÊıÁ¿ */
+		point[stage++ % MAX_RECORD] = seikai;	/* è®°å½•å…³å¡çš„ç­”å¯¹æ•°é‡ */
+		success += seikai;						/* æ›´æ–°æ•´ä½“çš„ç­”å¯¹æ•°é‡ */
 
-		printf("ÊÇ·ñ¼ÌĞø£¿£¨Yes¡¤¡¤¡¤1£¯No¡¤¡¤¡¤0£©£º");
+		printf("æ˜¯å¦ç»§ç»­ï¼Ÿï¼ˆYesÂ·Â·Â·1ï¼NoÂ·Â·Â·0ï¼‰ï¼š");
 		scanf("%d", &retry);
 	} while (retry == 1);
 	end = clock();
 
-	printf("\n¡ö¡õ ³É¼¨ ¡õ¡ö\n");
+	printf("\nâ– â–¡ æˆç»© â–¡â– \n");
 
 	stage2 = stage - MAX_RECORD;
 	if (stage2 < 0) stage2 = 0;
@@ -93,7 +93,7 @@ int main(void)
 	for (i = level; i >= 1; i--) {
 		for (j = stage2; j < stage; j++)
 			if (point[j % MAX_RECORD] >= i)
-				printf(" ¡ï ");
+				printf(" â˜… ");
 			else
 				printf("    ");
 		putchar('\n');
@@ -104,8 +104,8 @@ int main(void)
 		printf(" %02d ", j + 1);
 	putchar('\n');
 
-	printf("%d¸öÖĞ´ğ¶ÔÁË%d¸ö¡£\n", level * stage, success);
-	printf("ÓÃÊ±%.1fÃë¡£\n", (double)(end - start) / CLOCKS_PER_SEC);
+	printf("%dä¸ªä¸­ç­”å¯¹äº†%dä¸ªã€‚\n", level * stage, success);
+	printf("ç”¨æ—¶%.1fç§’ã€‚\n", (double)(end - start) / CLOCKS_PER_SEC);
 
 	return 0;
 }

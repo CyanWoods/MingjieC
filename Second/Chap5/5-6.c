@@ -1,20 +1,20 @@
-/* ¼ÓÒ»ÑµÁ·£¨¼ÇÒä¶à¸öÊıÖµ²¢ÊäÈëÕâĞ©ÊıÖµ¼Ó1ºóµÄÖµ£©*/
+/* åŠ ä¸€è®­ç»ƒï¼ˆè®°å¿†å¤šä¸ªæ•°å€¼å¹¶è¾“å…¥è¿™äº›æ•°å€¼åŠ 1åçš„å€¼ï¼‰*/
 
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_STAGE	10				/* ¹Ø¿¨Êı */
-#define LEVEL_MIN	2				/* ×îµÍµÈ¼¶£¨ÊıÖµ¸öÊı£©*/
-#define LEVEL_MAX	6				/* ×î¸ßµÈ¼¶£¨ÊıÖµ¸öÊı£©*/
+#define MAX_STAGE	10				/* å…³å¡æ•° */
+#define LEVEL_MIN	2				/* æœ€ä½ç­‰çº§ï¼ˆæ•°å€¼ä¸ªæ•°ï¼‰*/
+#define LEVEL_MAX	6				/* æœ€é«˜ç­‰çº§ï¼ˆæ•°å€¼ä¸ªæ•°ï¼‰*/
 
-/*--- µÈ´ıxºÁÃë ---*/
+/*--- ç­‰å¾…xæ¯«ç§’ ---*/
 int sleep(unsigned long x)
 {
 	clock_t c1 = clock(), c2;
 
 	do {
-		if ((c2 = clock()) == (clock_t)-1)	/* ´íÎó */
+		if ((c2 = clock()) == (clock_t)-1)	/* é”™è¯¯ */
 			return 0;
 	} while (1000.0 * (c2 - c1) / CLOCKS_PER_SEC < x); 
 	return 1;
@@ -23,77 +23,77 @@ int sleep(unsigned long x)
 int main(void)
 {
 	int i, stage;
-	int level;						/* µÈ¼¶ */
-	int success;					/* ´ğ¶ÔÊıÁ¿ */
-	int score[MAX_STAGE];			/* ËùÓĞ¹Ø¿¨µÄ´ğ¶ÔÊıÁ¿ */
-	clock_t	start, end;				/* ¿ªÊ¼Ê±¼ä/½áÊøÊ±¼ä */
+	int level;						/* ç­‰çº§ */
+	int success;					/* ç­”å¯¹æ•°é‡ */
+	int score[MAX_STAGE];			/* æ‰€æœ‰å…³å¡çš„ç­”å¯¹æ•°é‡ */
+	clock_t	start, end;				/* å¼€å§‹æ—¶é—´/ç»“æŸæ—¶é—´ */
 
-	srand(time(NULL));				/* Éè¶¨Ëæ»úÊıµÄÖÖ×Ó */
+	srand(time(NULL));				/* è®¾å®šéšæœºæ•°çš„ç§å­ */
 
-	printf("¼ÓÒ»ÑµÁ·¿ªÊ¼!!\n");
-	printf("À´¼ÇÒä2Î»µÄÊıÖµ¡£\n");
-	printf("ÇëÊäÈëÔ­ÊıÖµ¼Ó1ºóµÄÖµ¡£\n");
+	printf("åŠ ä¸€è®­ç»ƒå¼€å§‹!!\n");
+	printf("æ¥è®°å¿†2ä½çš„æ•°å€¼ã€‚\n");
+	printf("è¯·è¾“å…¥åŸæ•°å€¼åŠ 1åçš„å€¼ã€‚\n");
 
 	do {
-		printf("ÒªÌôÕ½µÄµÈ¼¶(%d¡«%d)£º", LEVEL_MIN, LEVEL_MAX);
+		printf("è¦æŒ‘æˆ˜çš„ç­‰çº§(%dï½%d)ï¼š", LEVEL_MIN, LEVEL_MAX);
 		scanf("%d", &level);
 	} while (level < LEVEL_MIN || level > LEVEL_MAX);
 
 	success = 0;
 	start = clock();
 	for (stage = 0; stage < MAX_STAGE; stage++) {
-		int no[LEVEL_MAX];					/* Òª¼ÇÒäµÄÊıÖµ */
-		int x[LEVEL_MAX];					/* ÒÑ¶ÁÈ¡µÄÖµ */
-		int seikai = 0;						/* ±¾¹Ø¿¨µÄ´ğ¶ÔÊıÁ¿ */
+		int no[LEVEL_MAX];					/* è¦è®°å¿†çš„æ•°å€¼ */
+		int x[LEVEL_MAX];					/* å·²è¯»å–çš„å€¼ */
+		int seikai = 0;						/* æœ¬å…³å¡çš„ç­”å¯¹æ•°é‡ */
 
-		printf("\nµÚ%d¹Ø¿¨¿ªÊ¼!!\n", stage + 1);
+		printf("\nç¬¬%då…³å¡å¼€å§‹!!\n", stage + 1);
 
-		for (i = 0; i < level; i++) {		/* ½ölevel¸ö */
-			no[i] = rand() % 90 + 10;		/* Éú³É10 ~ 99µÄËæ»úÊı */
-			printf("%d ", no[i]);			/* ÏÔÊ¾ */
+		for (i = 0; i < level; i++) {		/* ä»…levelä¸ª */
+			no[i] = rand() % 90 + 10;		/* ç”Ÿæˆ10 ~ 99çš„éšæœºæ•° */
+			printf("%d ", no[i]);			/* æ˜¾ç¤º */
 		}
 		fflush(stdout);
-		sleep(300 * level);					/* µÈ´ı0.30 ¡Á levelÃë */
-		printf("\r%*s\r", 3 * level, "");	/* Ïû³ıÌâÄ¿ */
+		sleep(300 * level);					/* ç­‰å¾…0.30 Ã— levelç§’ */
+		printf("\r%*s\r", 3 * level, "");	/* æ¶ˆé™¤é¢˜ç›® */
 		fflush(stdout);
 
-		for (i = 0; i < level; i++) {		/* ¶ÁÈ¡´ğ°¸ */
-			printf("µÚ%d¸öÊı£º", i + 1);
+		for (i = 0; i < level; i++) {		/* è¯»å–ç­”æ¡ˆ */
+			printf("ç¬¬%dä¸ªæ•°ï¼š", i + 1);
 			scanf("%d", &x[i]);
 		}
 
-		for (i = 0; i < level; i++) {		/* ÅĞ¶Ï¶Ô´í²¢ÏÔÊ¾ */
+		for (i = 0; i < level; i++) {		/* åˆ¤æ–­å¯¹é”™å¹¶æ˜¾ç¤º */
 			if (x[i] != no[i] + 1)
-				printf("¡Á ");
+				printf("Ã— ");
 			else {
-				printf("¡ğ ");
+				printf("â—‹ ");
 				seikai++;
 			}
 		}
 		putchar('\n');
 
-		for (i = 0; i < level; i++)			/* ÏÔÊ¾ÕıÈ·´ğ°¸ */
+		for (i = 0; i < level; i++)			/* æ˜¾ç¤ºæ­£ç¡®ç­”æ¡ˆ */
 			printf("%2d ", no[i]);
 
-		printf(" ¡¤¡¤¡¤ ´ğ¶ÔÁË%d¸ö¡£\n", seikai);
-		score[stage] = seikai;				/* ¼ÇÂ¼¹Ø¿¨µÄ´ğ¶ÔÊıÁ¿ */
-		success += seikai;					/* ¸üĞÂÕûÌåµÄ´ğ¶ÔÊıÁ¿ */
+		printf(" Â·Â·Â· ç­”å¯¹äº†%dä¸ªã€‚\n", seikai);
+		score[stage] = seikai;				/* è®°å½•å…³å¡çš„ç­”å¯¹æ•°é‡ */
+		success += seikai;					/* æ›´æ–°æ•´ä½“çš„ç­”å¯¹æ•°é‡ */
 	}
 	end = clock();
 
-	printf("%d¸öÖĞ´ğ¶ÔÁË%d¸ö¡£\n", level * MAX_STAGE, success);
+	printf("%dä¸ªä¸­ç­”å¯¹äº†%dä¸ªã€‚\n", level * MAX_STAGE, success);
 
-	printf("\n¡ö¡õ ³É¼¨ ¡õ¡ö\n");
+	printf("\nâ– â–¡ æˆç»© â–¡â– \n");
 	printf("------------------------\n");
 	for (stage = 0; stage < MAX_STAGE; stage++) {
-		printf("µÚ%2d¹Ø¿¨£º", stage + 1);
+		printf("ç¬¬%2då…³å¡ï¼š", stage + 1);
 		for (i = 0; i < score[stage]; i++)
-			printf("¡ï");
+			printf("â˜…");
 		putchar('\n');
 	}
 	printf("------------------------\n");
 
-	printf("ÓÃÊ±%.1fÃë¡£\n", (double)(end - start) / CLOCKS_PER_SEC);
+	printf("ç”¨æ—¶%.1fç§’ã€‚\n", (double)(end - start) / CLOCKS_PER_SEC);
 
 	return 0;
 }

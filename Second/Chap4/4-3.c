@@ -1,16 +1,16 @@
-/* 把读取到的字符串形式的整数转换为数值并显示 */
+/* 鎶婅鍙栧埌鐨勫瓧绗︿覆褰㈠紡鐨勬暣鏁拌浆鎹负鏁板�煎苟鏄剧ず */
 
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(void)
 {
-	char temp[20];		/* 用于读取的字符串 */
+	char temp[20];		/* 鐢ㄤ簬璇诲彇鐨勫瓧绗︿覆 */
 
-	printf("请输入整数：");
+	printf("璇疯緭鍏ユ暣鏁帮細");
 	scanf("%s", temp);
 
-	printf("你输入了%d。\n", atoi(temp));
+	printf("浣犺緭鍏ヤ簡%d銆俓n", atoi(temp));
 
 	return 0;
 }

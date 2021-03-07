@@ -1,4 +1,4 @@
-/* Îª¶¯Ì¬·ÖÅäÁË´æ´¢¿Õ¼äµÄÕûÊı¸³Öµ²¢ÏÔÊ¾ */
+/* ä¸ºåŠ¨æ€åˆ†é…äº†å­˜å‚¨ç©ºé—´çš„æ•´æ•°èµ‹å€¼å¹¶æ˜¾ç¤º */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,14 +7,14 @@ int main(void)
 {
 	int *x;
 
-	x = calloc(1, sizeof(int));		/* ·ÖÅä */
+	x = calloc(1, sizeof(int));		/* åˆ†é… */
 
 	if (x == NULL)
-		puts("´æ´¢¿Õ¼ä·ÖÅäÊ§°Ü¡£");
+		puts("å­˜å‚¨ç©ºé—´åˆ†é…å¤±è´¥ã€‚");
 	else {
 		*x = 57;
 		printf("*x = %d\n", *x);
-		free(x);					/* ÊÍ·Å */
+		free(x);					/* é‡Šæ”¾ */
 	}
 
 	return 0;

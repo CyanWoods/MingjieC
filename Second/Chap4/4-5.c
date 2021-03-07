@@ -1,4 +1,4 @@
-/*--- hitºÍblowµÄÅÐ¶Ï ---*/
+/*--- hitå’Œblowçš„åˆ¤æ–­ ---*/
 void judge(const char s[], const int no[], int *hit, int *blow)
 {
 	int i, j;
@@ -6,11 +6,11 @@ void judge(const char s[], const int no[], int *hit, int *blow)
 	*hit = *blow = 0;
 	for (i = 0; i < 4; i++) {
 		for (j = 0; j < 4; j++) {
-			if (s[i] == '0' + no[j])	/* Êý×ÖÒ»ÖÂ */
+			if (s[i] == '0' + no[j])	/* æ•°å­—ä¸€è‡´ */
 				if (i == j)
-					(*hit)++;			/* hit£¨Î»ÖÃÒ²Ò»ÖÂ£©*/
+					(*hit)++;			/* hitï¼ˆä½ç½®ä¹Ÿä¸€è‡´ï¼‰*/
 				else
-					(*blow)++;			/* blow£¨Î»ÖÃ²»Ò»ÖÂ£©*/
+					(*blow)++;			/* blowï¼ˆä½ç½®ä¸ä¸€è‡´ï¼‰*/
 		}
 	}
 }
