@@ -1,11 +1,11 @@
-/* ÏÔÊ¾ÈÕÀú */
+/* æ˜¾ç¤ºæ—¥å† */
 
 #include <stdio.h>
 
-/*--- ¸÷ÔÂµÄÌìÊı ---*/
+/*--- å„æœˆçš„å¤©æ•° ---*/
 int mday[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-/*--- yearÄêmonthÔÂdayÈÕÊÇĞÇÆÚ¼¸ ---*/
+/*--- yearå¹´monthæœˆdayæ—¥æ˜¯æ˜ŸæœŸå‡  ---*/
 int dayofweek(int year, int month, int day)
 {
 	if (month == 1 || month == 2) {
@@ -15,36 +15,36 @@ int dayofweek(int year, int month, int day)
 	return (year + year/4 - year/100 + year/400 + (13*month+8)/5 + day) % 7;
 }
 
-/*--- yearÄêÊÇÈòÄêÂğ£¿£¨0¡¤¡¤¡¤Æ½Äê/1¡¤¡¤¡¤ÈòÄê£© ---*/
+/*--- yearå¹´æ˜¯é—°å¹´å—ï¼Ÿï¼ˆ0Â·Â·Â·å¹³å¹´/1Â·Â·Â·é—°å¹´ï¼‰ ---*/
 int is_leap(int year)
 {
 	return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
 }
 
-/*--- yearÄêmonthÔÂµÄÌìÊı£¨28¡«31£© ---*/
+/*--- yearå¹´monthæœˆçš„å¤©æ•°ï¼ˆ28ï½31ï¼‰ ---*/
 int monthdays(int year, int month)
 {
-	if (month-- != 2)						/* µ±month·Ç2ÔÂÊ± */
+	if (month-- != 2)						/* å½“monthé2æœˆæ—¶ */
 		return mday[month];
-	return mday[month] + is_leap(year);		/* µ±monthÎª2ÔÂÊ± */
+	return mday[month] + is_leap(year);		/* å½“monthä¸º2æœˆæ—¶ */
 }
 
-/*--- ÏÔÊ¾yÄêmÔÂµÄÈÕÀú ---*/
+/*--- æ˜¾ç¤ºyå¹´mæœˆçš„æ—¥å† ---*/
 void put_calendar(int y, int m)
 {
 	int i;
-	int wd = dayofweek(y, m, 1);	/* yÄêmÔÂ1ÈÕ¶ÔÓ¦µÄĞÇÆÚ */
-	int mdays = monthdays(y, m);	/* yÄêmÔÂµÄÌìÊı */
+	int wd = dayofweek(y, m, 1);	/* yå¹´mæœˆ1æ—¥å¯¹åº”çš„æ˜ŸæœŸ */
+	int mdays = monthdays(y, m);	/* yå¹´mæœˆçš„å¤©æ•° */
 
-	printf(" ÈÕ Ò» ¶ş Èı ËÄ Îå Áù \n");
+	printf(" æ—¥ ä¸€ äºŒ ä¸‰ å›› äº” å…­ \n");
 	printf("----------------------\n");
 
-	printf("%*s", 3 * wd, "");		/* ÏÔÊ¾1ÈÕ×ó²àµÄ¿Õ¸ñ */
+	printf("%*s", 3 * wd, "");		/* æ˜¾ç¤º1æ—¥å·¦ä¾§çš„ç©ºæ ¼ */
 
 	for (i = 1; i <= mdays; i++) {
 		printf("%3d", i);
-		if (++wd % 7 == 0)		/* ÏÔÊ¾ĞÇÆÚÁùºó */
-			putchar('\n');		/* »»ĞĞ */
+		if (++wd % 7 == 0)		/* æ˜¾ç¤ºæ˜ŸæœŸå…­å */
+			putchar('\n');		/* æ¢è¡Œ */
 	}
 	if (wd % 7 != 0)
 		putchar('\n');
@@ -54,13 +54,13 @@ int main(void)
 {
 	int y, m;
 
-	printf("ÏÔÊ¾ÈÕÀú¡£\n");
-	printf("Äê£º");	  scanf("%d", &y);
-	printf("ÔÂ£º");   scanf("%d", &m);
+	printf("æ˜¾ç¤ºæ—¥å†ã€‚\n");
+	printf("å¹´ï¼š");	  scanf("%d", &y);
+	printf("æœˆï¼š");   scanf("%d", &m);
 
 	putchar('\n');
 
-	put_calendar(y, m);		/* ÏÔÊ¾yÄêmÔÂµÄÈÕÀú */
+	put_calendar(y, m);		/* æ˜¾ç¤ºyå¹´mæœˆçš„æ—¥å† */
 
 	return 0;
 }

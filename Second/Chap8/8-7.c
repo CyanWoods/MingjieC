@@ -1,4 +1,4 @@
-/* ×ÛºÏ´ò×ÖÁ·Ï° */
+/* ç»¼åˆæ‰“å­—ç»ƒä¹  */
 
 #include <time.h>
 #include <stdio.h>
@@ -6,26 +6,26 @@
 #include <string.h>
 #include "getputch.h"
 
-#define	NO			15			/* ÑµÁ·´ÎÊı */
-#define	KTYPE		16			/* ¿éÊı */
-#define	POS_LEN		10			/* ÓÃÓÚÎ»ÖÃÑµÁ·µÄ×Ö·ûÊıÁ¿ */
+#define	NO			15			/* è®­ç»ƒæ¬¡æ•° */
+#define	KTYPE		16			/* å—æ•° */
+#define	POS_LEN		10			/* ç”¨äºä½ç½®è®­ç»ƒçš„å­—ç¬¦æ•°é‡ */
 
-/*--- Á·Ï°²Ëµ¥ ---*/
+/*--- ç»ƒä¹ èœå• ---*/
 typedef enum { Term, KeyPos, KeyPosComp, Clang, Conversation, InValid } Menu;
 
-/*--- ¸÷¸ö¿éµÄ¼ü ---*/
+/*--- å„ä¸ªå—çš„é”® ---*/
 char *kstr[] = {
-	"12345",  "67890-^\\",		/* µÚ£±²ã        */
-	"!\"#$%", "&'()=~|",		/* µÚ£±²ã[Shift] */
-	"qwert",  "yuiop@[",		/* µÚ2²ã         */
-	"QWERT",  "YUIOP`{",		/* µÚ2²ã[Shift]  */
-	"asdfg",  "hjkl;:]",		/* µÚ3²ã         */
-	"ASDFG",  "HJKL+*}",		/* µÚ3²ã[Shift]  */
-	"zxcvb",  "nm,./\\",		/* µÚ4²ã         */
-	"ZXCVB",  "NM<>?_",			/* µÚ4²ã[Shift]  */
+	"12345",  "67890-^\\",		/* ç¬¬ï¼‘å±‚        */
+	"!\"#$%", "&'()=~|",		/* ç¬¬ï¼‘å±‚[Shift] */
+	"qwert",  "yuiop@[",		/* ç¬¬2å±‚         */
+	"QWERT",  "YUIOP`{",		/* ç¬¬2å±‚[Shift]  */
+	"asdfg",  "hjkl;:]",		/* ç¬¬3å±‚         */
+	"ASDFG",  "HJKL+*}",		/* ç¬¬3å±‚[Shift]  */
+	"zxcvb",  "nm,./\\",		/* ç¬¬4å±‚         */
+	"ZXCVB",  "NM<>?_",			/* ç¬¬4å±‚[Shift]  */
 };
 
-/*--- CÓïÑÔµÄ¹Ø¼ü×ÖºÍ¿âº¯Êı ---*/
+/*--- Cè¯­è¨€çš„å…³é”®å­—å’Œåº“å‡½æ•° ---*/
 char *cstr[] = {
 	"auto",		"break",	"case",		"char",		"const",	"continue",
 	"default",	"do",		"double",	"else",		"enum",		"extern",
@@ -59,56 +59,56 @@ char *cstr[] = {
 	"vfprintf", "vprintf",	"vsprintf"
 };
 
-/*--- Ó¢Óï»á»° ---*/
+/*--- è‹±è¯­ä¼šè¯ ---*/
 char *vstr[] = {
-	"Hello!",							/* ÄãºÃ¡£*/
-	"How are you?",						/* ÄãºÃÂğ£¿*/
-	"Fine thanks.",						/* àÅ£¬ÎÒºÜºÃ¡£*/
-	"I can't complain, thanks.",		/* àÅ£¬»¹ĞĞ°É¡£*/
-	"How do you do?",					/* ³õ´Î¼ûÃæ¡£*/
-	"Good bye!",						/* ÔÙ¼û¡£*/
-	"Good morning!",					/* ÔçÉÏºÃ¡£*/
-	"Good afternoon!",					/* ÏÂÎçºÃ¡£*/
-	"Good evening!",					/* ÍíÉÏºÃ¡£*/
-	"See you later!",					/* ÔÙ¼û£¨¹ı»á¼û£©¡£*/
-	"Go ahead, please.",				/* ÄúÏÈÇë¡£*/
-	"Thank you.",						/* Ğ»Ğ»¡£*/
-	"No, thank you.",					/* ²»£¬Ğ»Ğ»¡£*/
-	"May I have your name?",			/* ÇëÎÊÄã½ĞÊ²Ã´Ãû×Ö£¿*/
-	"I'm glad to meet you.",			/* ºÜ¸ßĞËÄÜ¼ûµ½Äã¡£*/
-	"What time is it now?",				/* ÇëÎÊÏÖÔÚÊÇ¼¸µã£¿*/
-	"It's about seven.",				/* ´ó¸Å7µã¡£*/
-	"I must go now.",					/* ÎÒ²»µÃ²»×ßÁË¡£*/
-	"How much?",						/* ¶àÉÙÇ®£¿*/
-	"Where is the restroom?",			/* ÇëÎÊÏ´ÊÖ¼äÔÚÄÄÀï£¿*/
-	"Excuse me.",						/* ±§Ç¸£¨Ò»ÈË£©¡£*/
-	"Excuse us.",						/* ±§Ç¸£¨Á½ÈËÒÔÉÏ£©¡£*/
-	"I'm sorry.",						/* ¶Ô²»Æğ¡£*/
-	"I don't know.",					/* ÎÒ²»ÖªµÀ¡£*/
-	"I have no change with me.",		/* ÎÒÃ»´øÁãÇ®¡£*/
-	"I will be back.",					/* ÎÒ»¹»á»ØÀ´µÄ¡£*/
-	"Are you going out?",				/* ÄãÒª³öÃÅÂğ£¿*/
-	"I hope I'm not disturbing you.",	/* Ï£Íû²»»á´ò½Áµ½Äã¡£*/
-	"I'll offer no excuse.",			/* ÎÒÃ»´òËãÎª×Ô¼º±ç½â¡£*/
-	"Shall we dance?",					/* À´ÌøÎè°É¡£*/
-	"Will you do me a favor?",			/* ÄãÄÜ°ïÎÒ¸öÃ¦Âğ£¿*/
-	"It's very unseasonable.",			/* Õâ·Ç³£²»ºÏÊ±½Ú°¡¡£*/
-	"You are always welcome.",			/* ËæÊ±»¶Ó­¡£*/
-	"Hold still!",						/* ±ğ¶¯£¡*/
-	"Follow me.",						/* ¸úÎÒÀ´¡£*/
-	"Just follow my lead.",				/* ¸ú×ÅÎÒ×ö¾ÍºÃ¡£*/
-	"To be honest with you,",			/* ËµÕæµÄ¡­¡­*/
+	"Hello!",							/* ä½ å¥½ã€‚*/
+	"How are you?",						/* ä½ å¥½å—ï¼Ÿ*/
+	"Fine thanks.",						/* å—¯ï¼Œæˆ‘å¾ˆå¥½ã€‚*/
+	"I can't complain, thanks.",		/* å—¯ï¼Œè¿˜è¡Œå§ã€‚*/
+	"How do you do?",					/* åˆæ¬¡è§é¢ã€‚*/
+	"Good bye!",						/* å†è§ã€‚*/
+	"Good morning!",					/* æ—©ä¸Šå¥½ã€‚*/
+	"Good afternoon!",					/* ä¸‹åˆå¥½ã€‚*/
+	"Good evening!",					/* æ™šä¸Šå¥½ã€‚*/
+	"See you later!",					/* å†è§ï¼ˆè¿‡ä¼šè§ï¼‰ã€‚*/
+	"Go ahead, please.",				/* æ‚¨å…ˆè¯·ã€‚*/
+	"Thank you.",						/* è°¢è°¢ã€‚*/
+	"No, thank you.",					/* ä¸ï¼Œè°¢è°¢ã€‚*/
+	"May I have your name?",			/* è¯·é—®ä½ å«ä»€ä¹ˆåå­—ï¼Ÿ*/
+	"I'm glad to meet you.",			/* å¾ˆé«˜å…´èƒ½è§åˆ°ä½ ã€‚*/
+	"What time is it now?",				/* è¯·é—®ç°åœ¨æ˜¯å‡ ç‚¹ï¼Ÿ*/
+	"It's about seven.",				/* å¤§æ¦‚7ç‚¹ã€‚*/
+	"I must go now.",					/* æˆ‘ä¸å¾—ä¸èµ°äº†ã€‚*/
+	"How much?",						/* å¤šå°‘é’±ï¼Ÿ*/
+	"Where is the restroom?",			/* è¯·é—®æ´—æ‰‹é—´åœ¨å“ªé‡Œï¼Ÿ*/
+	"Excuse me.",						/* æŠ±æ­‰ï¼ˆä¸€äººï¼‰ã€‚*/
+	"Excuse us.",						/* æŠ±æ­‰ï¼ˆä¸¤äººä»¥ä¸Šï¼‰ã€‚*/
+	"I'm sorry.",						/* å¯¹ä¸èµ·ã€‚*/
+	"I don't know.",					/* æˆ‘ä¸çŸ¥é“ã€‚*/
+	"I have no change with me.",		/* æˆ‘æ²¡å¸¦é›¶é’±ã€‚*/
+	"I will be back.",					/* æˆ‘è¿˜ä¼šå›æ¥çš„ã€‚*/
+	"Are you going out?",				/* ä½ è¦å‡ºé—¨å—ï¼Ÿ*/
+	"I hope I'm not disturbing you.",	/* å¸Œæœ›ä¸ä¼šæ‰“æ…åˆ°ä½ ã€‚*/
+	"I'll offer no excuse.",			/* æˆ‘æ²¡æ‰“ç®—ä¸ºè‡ªå·±è¾©è§£ã€‚*/
+	"Shall we dance?",					/* æ¥è·³èˆå§ã€‚*/
+	"Will you do me a favor?",			/* ä½ èƒ½å¸®æˆ‘ä¸ªå¿™å—ï¼Ÿ*/
+	"It's very unseasonable.",			/* è¿™éå¸¸ä¸åˆæ—¶èŠ‚å•Šã€‚*/
+	"You are always welcome.",			/* éšæ—¶æ¬¢è¿ã€‚*/
+	"Hold still!",						/* åˆ«åŠ¨ï¼*/
+	"Follow me.",						/* è·Ÿæˆ‘æ¥ã€‚*/
+	"Just follow my lead.",				/* è·Ÿç€æˆ‘åšå°±å¥½ã€‚*/
+	"To be honest with you,",			/* è¯´çœŸçš„â€¦â€¦*/
 };
 
-/*--- ×Ö·û´®strµÄ´ò×ÖÁ·Ï°£¨·µ»Ø´íÎó´ÎÊı£© ---*/
+/*--- å­—ç¬¦ä¸²strçš„æ‰“å­—ç»ƒä¹ ï¼ˆè¿”å›é”™è¯¯æ¬¡æ•°ï¼‰ ---*/
 int go(const char *str)
 {
 	int i;
-	int len = strlen(str);			/* ×Ö·ûÊıÁ¿ */
-	int mistake = 0;				/* ´íÎó´ÎÊı */
+	int len = strlen(str);			/* å­—ç¬¦æ•°é‡ */
+	int mistake = 0;				/* é”™è¯¯æ¬¡æ•° */
 
 	for (i = 0; i < len; i++) {
-		/* ÏÔÊ¾str[i]Ö®ºóµÄ×Ö·û²¢°Ñ¹â±ê·µ»Øµ½¿ªÍ· */
+		/* æ˜¾ç¤ºstr[i]ä¹‹åçš„å­—ç¬¦å¹¶æŠŠå…‰æ ‡è¿”å›åˆ°å¼€å¤´ */
 		printf("%s \r", &str[i]);
 		fflush(stdout);
 		while (getch() != str[i]) {
@@ -118,76 +118,76 @@ int go(const char *str)
 	return mistake;
 }
 
-/*--- µ¥Ò»Î»ÖÃÑµÁ· ---*/
+/*--- å•ä¸€ä½ç½®è®­ç»ƒ ---*/
 void pos_training(void)
 {
 	int i;
 	int stage;
 	int temp, line;
-	int len;						/* ÓÃÓÚ³öÌâµÄ¿éµÄ¼üÊı */
-	int qno, pno;					/* ÌâÄ¿±àºÅºÍÉÏÒ»´ÎµÄÌâÄ¿±àºÅ */
-	int tno, mno;					/* ×Ö·ûÊıÁ¿ºÍ´íÎó´ÎÊı */
-	clock_t	start, end;				/* ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä */
+	int len;						/* ç”¨äºå‡ºé¢˜çš„å—çš„é”®æ•° */
+	int qno, pno;					/* é¢˜ç›®ç¼–å·å’Œä¸Šä¸€æ¬¡çš„é¢˜ç›®ç¼–å· */
+	int tno, mno;					/* å­—ç¬¦æ•°é‡å’Œé”™è¯¯æ¬¡æ•° */
+	clock_t	start, end;				/* å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´ */
 
-	printf("\n½øĞĞµ¥Ò»Î»ÖÃÑµÁ·¡£\n");
-	printf("ÇëÑ¡ÔñÒªÁ·Ï°µÄ¿é¡£\n");
-	printf("µÚ1²ã (1) ×ó %-8s    (2) ÓÒ %-8s\n", kstr[ 0], kstr[ 1]);
-	printf("µÚ2²ã (3) ×ó %-8s    (4) ÓÒ %-8s\n", kstr[ 4], kstr[ 5]);
-	printf("µÚ3²ã (5) ×ó %-8s    (6) ÓÒ %-8s\n", kstr[ 8], kstr[ 9]);
-	printf("µÚ4²ã (7) ×ó %-8s    (8) ÓÒ %-8s\n", kstr[12], kstr[13]);
+	printf("\nè¿›è¡Œå•ä¸€ä½ç½®è®­ç»ƒã€‚\n");
+	printf("è¯·é€‰æ‹©è¦ç»ƒä¹ çš„å—ã€‚\n");
+	printf("ç¬¬1å±‚ (1) å·¦ %-8s    (2) å³ %-8s\n", kstr[ 0], kstr[ 1]);
+	printf("ç¬¬2å±‚ (3) å·¦ %-8s    (4) å³ %-8s\n", kstr[ 4], kstr[ 5]);
+	printf("ç¬¬3å±‚ (5) å·¦ %-8s    (6) å³ %-8s\n", kstr[ 8], kstr[ 9]);
+	printf("ç¬¬4å±‚ (7) å·¦ %-8s    (8) å³ %-8s\n", kstr[12], kstr[13]);
 
-	/* ÈÃÍæ¼ÒÑ¡Ôñ¿é */
+	/* è®©ç©å®¶é€‰æ‹©å— */
 	do {
-		printf("±àºÅ£¨Í£Ö¹Á·Ï°Îª99£©£º");
+		printf("ç¼–å·ï¼ˆåœæ­¢ç»ƒä¹ ä¸º99ï¼‰ï¼š");
 		scanf("%d", &temp);
-		if (temp == 99) return;				/* Í£Ö¹Á·Ï° */
+		if (temp == 99) return;				/* åœæ­¢ç»ƒä¹  */
 	} while (temp < 1 || temp > 8);
 	line = 4 * ((temp - 1) / 2) + (temp - 1) % 2;
 
-	printf("Á·Ï°%s´Î%dÌâÄ¿¡£\n", kstr[line], NO);
+	printf("ç»ƒä¹ %sæ¬¡%dé¢˜ç›®ã€‚\n", kstr[line], NO);
 
-	printf("°´ÏÂ¿Õ¸ñ¼ü¿ªÊ¼¡£\n");
+	printf("æŒ‰ä¸‹ç©ºæ ¼é”®å¼€å§‹ã€‚\n");
 	while (getch() != ' ')
 		;
 
-	tno = mno = 0;						/* Çå¿Õ×Ö·ûÊıÁ¿ºÍ´íÎó´ÎÊı */
-	len = strlen(kstr[line]);			/* ÒªÁ·Ï°µÄ¿éµÄ¼üÊı */
+	tno = mno = 0;						/* æ¸…ç©ºå­—ç¬¦æ•°é‡å’Œé”™è¯¯æ¬¡æ•° */
+	len = strlen(kstr[line]);			/* è¦ç»ƒä¹ çš„å—çš„é”®æ•° */
 
-	start = clock();						/* ¿ªÊ¼Ê±¼ä */
+	start = clock();						/* å¼€å§‹æ—¶é—´ */
 
 	for (stage = 0; stage < NO; stage++) {
 		char str[POS_LEN + 1];
 
-		for (i = 0; i < POS_LEN; i++)	/* Éú³ÉÓÃÓÚ³öÌâµÄ×Ö·û´® */
+		for (i = 0; i < POS_LEN; i++)	/* ç”Ÿæˆç”¨äºå‡ºé¢˜çš„å­—ç¬¦ä¸² */
 			str[i] = kstr[line][rand() % len];
 		str[i] = '\0';
 
-		mno += go(str);						/* ÔËĞĞÁ·Ï° */
+		mno += go(str);						/* è¿è¡Œç»ƒä¹  */
 		tno += strlen(str);
 	}
 
-	end = clock();							/* ½áÊøÊ±¼ä */
+	end = clock();							/* ç»“æŸæ—¶é—´ */
 
-	printf("ÌâÄ¿£º%d×Ö·û/´íÎó£º%d´Î\n", tno, mno);
-	printf("ÓÃÊ±%.1fÃë¡£\n", (double)(end - start) / CLOCKS_PER_SEC);
+	printf("é¢˜ç›®ï¼š%då­—ç¬¦/é”™è¯¯ï¼š%dæ¬¡\n", tno, mno);
+	printf("ç”¨æ—¶%.1fç§’ã€‚\n", (double)(end - start) / CLOCKS_PER_SEC);
 }
 
-/*--- »ìºÏÎ»ÖÃÑµÁ· ---*/
+/*--- æ··åˆä½ç½®è®­ç»ƒ ---*/
 void pos_training2(void)
 {
 	int i;
 	int stage;
 	int temp, line;
-	int sno;						/* ±»Ñ¡ÖĞµÄ¿éÊı */
-	int select[KTYPE];				/* ±»Ñ¡ÖĞµÄ¿é */
-	int len[KTYPE];					/* ÓÃÓÚ³öÌâµÄ¿éµÄ¼üÊı */
-	int tno, mno;					/* ×Ö·ûÊıÁ¿ºÍ´íÎó´ÎÊı */
-	clock_t	start, end;				/* ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä */
-	char *format = "µÚ%d²ã (%2d) ×ó %-8s (%2d) ÓÒ %-8s "
-					      "(%2d)[×ó] %-8s (%2d)[ÓÒ] %-8s\n";
+	int sno;						/* è¢«é€‰ä¸­çš„å—æ•° */
+	int select[KTYPE];				/* è¢«é€‰ä¸­çš„å— */
+	int len[KTYPE];					/* ç”¨äºå‡ºé¢˜çš„å—çš„é”®æ•° */
+	int tno, mno;					/* å­—ç¬¦æ•°é‡å’Œé”™è¯¯æ¬¡æ•° */
+	clock_t	start, end;				/* å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´ */
+	char *format = "ç¬¬%då±‚ (%2d) å·¦ %-8s (%2d) å³ %-8s "
+					      "(%2d)[å·¦] %-8s (%2d)[å³] %-8s\n";
 
-	printf("\n½øĞĞ»ìºÏÎ»ÖÃÑµÁ·¡£\n");
-	printf("ÇëÑ¡ÔñÒªÁ·Ï°µÄ¿é£¨¿ÉÒÔ¶àÑ¡£©¡£\n");
+	printf("\nè¿›è¡Œæ··åˆä½ç½®è®­ç»ƒã€‚\n");
+	printf("è¯·é€‰æ‹©è¦ç»ƒä¹ çš„å—ï¼ˆå¯ä»¥å¤šé€‰ï¼‰ã€‚\n");
 
 	for (i = 0; i < 4; i++) {
 		int k = i * 4;
@@ -195,108 +195,108 @@ void pos_training2(void)
 							k + 3, kstr[k + 2], k + 4, kstr[k + 3]);
 	}
 
-	/* ²»ÖØ¸´Ñ¡Ôñ¿é£¨×î¶à16¸ö£© */
+	/* ä¸é‡å¤é€‰æ‹©å—ï¼ˆæœ€å¤š16ä¸ªï¼‰ */
 	sno = 0;
 	while (1) {
-		printf("±àºÅ£¨½áÊøÑ¡ÔñÎª50/Í£Ö¹Á·Ï°Îª99£©£º");
+		printf("ç¼–å·ï¼ˆç»“æŸé€‰æ‹©ä¸º50/åœæ­¢ç»ƒä¹ ä¸º99ï¼‰ï¼š");
 
 		do {
 			scanf("%d", &temp);
-			if (temp == 99) return;			/* Í£Ö¹Á·Ï° */
+			if (temp == 99) return;			/* åœæ­¢ç»ƒä¹  */
 		} while ((temp < 1 || temp > KTYPE) && temp != 50);
 
 		if (temp == 50)
 			break;
 		for (i = 0; i < sno; i++)
 			if (temp == select[i]) {
-				printf("\aÕâÒ»²ãÒÑ¾­±»Ñ¡¹ıÁË¡£\n");
+				printf("\aè¿™ä¸€å±‚å·²ç»è¢«é€‰è¿‡äº†ã€‚\n");
 				break;
 			}
 		if (i == sno)
-			select[sno++] = temp;			/* ×¢²á±»Ñ¡ÖĞµÄ¿é */
+			select[sno++] = temp;			/* æ³¨å†Œè¢«é€‰ä¸­çš„å— */
 	}
 
-	if (sno == 0)							/* Ò»¸ö¶¼Ã»ÓĞÑ¡ */
+	if (sno == 0)							/* ä¸€ä¸ªéƒ½æ²¡æœ‰é€‰ */
 		return;
 
-	printf("°ÑÏÂÁĞ¿éµÄÌâÄ¿Á·Ï°%d´Î¡£\n", NO);
+	printf("æŠŠä¸‹åˆ—å—çš„é¢˜ç›®ç»ƒä¹ %dæ¬¡ã€‚\n", NO);
 
 	for (i = 0; i < sno; i++)
 		printf("%s ", kstr[select[i] - 1]);
 
-	printf("\n°´ÏÂ¿Õ¸ñ¼ü¿ªÊ¼¡£\n");
+	printf("\næŒ‰ä¸‹ç©ºæ ¼é”®å¼€å§‹ã€‚\n");
 	while (getch() != ' ')
 		;
 
-	tno = mno = 0;							/* Çå¿Õ×Ö·ûÊıÁ¿ºÍ´íÎó´ÎÊı */
+	tno = mno = 0;							/* æ¸…ç©ºå­—ç¬¦æ•°é‡å’Œé”™è¯¯æ¬¡æ•° */
 	for (i = 0; i < sno; i++)
-		len[i] = strlen(kstr[select[i] - 1]);	/* ¿éµÄ¼üÊı */
+		len[i] = strlen(kstr[select[i] - 1]);	/* å—çš„é”®æ•° */
 
-	start = clock();						/* ¿ªÊ¼Ê±¼ä */
+	start = clock();						/* å¼€å§‹æ—¶é—´ */
 
 	for (stage = 0; stage < NO; stage++) {
 		char str[POS_LEN + 1];
 
-		for (i = 0; i < POS_LEN; i++) {		/* Éú³ÉÓÃÓÚ³öÌâµÄ×Ö·û´® */
+		for (i = 0; i < POS_LEN; i++) {		/* ç”Ÿæˆç”¨äºå‡ºé¢˜çš„å­—ç¬¦ä¸² */
 			int q = rand() % sno;
 			str[i] = kstr[select[q] - 1][rand() % len[q]];
 		}
 		str[i] = '\0';
 
-		mno += go(str);						/* ÔËĞĞÁ·Ï° */
+		mno += go(str);						/* è¿è¡Œç»ƒä¹  */
 		tno += strlen(str);
 	}
 
-	end = clock();							/* ½áÊøÊ±¼ä */
+	end = clock();							/* ç»“æŸæ—¶é—´ */
 
-	printf("ÌâÄ¿£º%d×Ö·û/´íÎó£º%d´Î\n", tno, mno);
-	printf("ÓÃÊ±%.1fÃë¡£\n", (double)(end - start) / CLOCKS_PER_SEC);
+	printf("é¢˜ç›®ï¼š%då­—ç¬¦/é”™è¯¯ï¼š%dæ¬¡\n", tno, mno);
+	printf("ç”¨æ—¶%.1fç§’ã€‚\n", (double)(end - start) / CLOCKS_PER_SEC);
 }
 
-/*--- CÓïÑÔ/Ó¢Óï»á»°ÑµÁ· ---*/
+/*--- Cè¯­è¨€/è‹±è¯­ä¼šè¯è®­ç»ƒ ---*/
 void word_training(const char *mes, const char *str[], int n)
 {
 	int stage;
-	int qno, pno;					/* ÌâÄ¿±àºÅºÍÉÏÒ»´ÎµÄÌâÄ¿±àºÅ */
-	int tno, mno;					/* ×Ö·ûÊıÁ¿ºÍ´íÎó´ÎÊı */
-	clock_t	start, end;				/* ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä */
+	int qno, pno;					/* é¢˜ç›®ç¼–å·å’Œä¸Šä¸€æ¬¡çš„é¢˜ç›®ç¼–å· */
+	int tno, mno;					/* å­—ç¬¦æ•°é‡å’Œé”™è¯¯æ¬¡æ•° */
+	clock_t	start, end;				/* å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´ */
 
-	printf("\nÁ·Ï°%d¸ö%s¡£\n", mes, NO);
+	printf("\nç»ƒä¹ %dä¸ª%sã€‚\n", mes, NO);
 
-	printf("°´ÏÂ¿Õ¸ñ¼ü¿ªÊ¼¡£\n");
+	printf("æŒ‰ä¸‹ç©ºæ ¼é”®å¼€å§‹ã€‚\n");
 	while (getch() != ' ')
 		;
 
-	tno = mno = 0;					/* Çå¿Õ×Ö·ûÊıÁ¿ºÍ´íÎó´ÎÊı */
-	pno = n;						/* ÉÏÒ»´ÎµÄÌâÄ¿±àºÅ£¨²»´æÔÚµÄ±àºÅ£© */
+	tno = mno = 0;					/* æ¸…ç©ºå­—ç¬¦æ•°é‡å’Œé”™è¯¯æ¬¡æ•° */
+	pno = n;						/* ä¸Šä¸€æ¬¡çš„é¢˜ç›®ç¼–å·ï¼ˆä¸å­˜åœ¨çš„ç¼–å·ï¼‰ */
 
-	start = clock();				/* ¿ªÊ¼Ê±¼ä */
+	start = clock();				/* å¼€å§‹æ—¶é—´ */
 
 	for (stage = 0; stage < NO; stage++) {
-		do {						/* ²»Á¬Ğø³öÍ¬Ò»¸öÌâÄ¿ */
+		do {						/* ä¸è¿ç»­å‡ºåŒä¸€ä¸ªé¢˜ç›® */
 			qno = rand() % n;
 		} while (qno == pno);
 
-		mno += go(str[qno]);		/* ÌâÄ¿ÊÇstr[qno] */
+		mno += go(str[qno]);		/* é¢˜ç›®æ˜¯str[qno] */
 		tno += strlen(str[qno]);
 		pno = qno;
 	}
 
-	end = clock();					/* ½áÊøÊ±¼ä */
+	end = clock();					/* ç»“æŸæ—¶é—´ */
 
-	printf("ÌâÄ¿£º%d×Ö·û/´íÎó£º%d´Î\n", tno, mno);
-	printf("ÓÃÊ±%.1fÃë¡£\n", (double)(end - start) / CLOCKS_PER_SEC);
+	printf("é¢˜ç›®ï¼š%då­—ç¬¦/é”™è¯¯ï¼š%dæ¬¡\n", tno, mno);
+	printf("ç”¨æ—¶%.1fç§’ã€‚\n", (double)(end - start) / CLOCKS_PER_SEC);
 }
 
-/*--- Ñ¡Ôñ²Ëµ¥ ---*/
+/*--- é€‰æ‹©èœå• ---*/
 Menu SelectMenu(void)
 {
 	int ch;
 
 	do {
-		printf("\nÇëÑ¡ÔñÁ·Ï°¡£\n");
-		printf("(1) µ¥Ò»Î»ÖÃ       (2) »ìºÏÎ»ÖÃ\n");
-		printf("(3) CÓïÑÔµÄµ¥´Ê    (4) Ó¢Óï»á»°      (0) ½áÊø £º");
+		printf("\nè¯·é€‰æ‹©ç»ƒä¹ ã€‚\n");
+		printf("(1) å•ä¸€ä½ç½®       (2) æ··åˆä½ç½®\n");
+		printf("(3) Cè¯­è¨€çš„å•è¯    (4) è‹±è¯­ä¼šè¯      (0) ç»“æŸ ï¼š");
 		scanf("%d", &ch);
 	} while (ch < Term || ch >= InValid);
 
@@ -305,31 +305,31 @@ Menu SelectMenu(void)
 
 int main(void)
 {
-	Menu menu;										/* ²Ëµ¥ */
-	int cn = sizeof(cstr) / sizeof(cstr[0]);		/* CÓïÑÔµÄµ¥´ÊÊıÁ¿ */
-	int vn = sizeof(vstr) / sizeof(vstr[0]);		/* Ó¢Óï»á»°µÄÎÄµµÊıÁ¿ */
+	Menu menu;										/* èœå• */
+	int cn = sizeof(cstr) / sizeof(cstr[0]);		/* Cè¯­è¨€çš„å•è¯æ•°é‡ */
+	int vn = sizeof(vstr) / sizeof(vstr[0]);		/* è‹±è¯­ä¼šè¯çš„æ–‡æ¡£æ•°é‡ */
 
 	init_getputch();
 
-	srand(time(NULL));								/* Éè¶¨Ëæ»úÊıÖÖ×Ó */
+	srand(time(NULL));								/* è®¾å®šéšæœºæ•°ç§å­ */
 
 	do {
 		switch (menu = SelectMenu()) {
 
-		 case KeyPos :						/* µ¥Ò»Î»ÖÃÑµÁ· */
+		 case KeyPos :						/* å•ä¸€ä½ç½®è®­ç»ƒ */
 		 			pos_training();
 		 			break;
 
-		 case KeyPosComp :					/* »ìºÏÎ»ÖÃÑµÁ· */
+		 case KeyPosComp :					/* æ··åˆä½ç½®è®­ç»ƒ */
 		 			pos_training2();
 		 			break;
 
-		 case Clang :						/* CÓïÑÔµÄµ¥´Ê */
-		 			word_training("CÓïÑÔµÄµ¥´Ê", cstr, cn);
+		 case Clang :						/* Cè¯­è¨€çš„å•è¯ */
+		 			word_training("Cè¯­è¨€çš„å•è¯", cstr, cn);
 		 			break;
 
-		 case Conversation :				/* Ó¢Óï»á»° */
-		 			word_training("Ó¢Óï»á»°µÄÎÄµµ", vstr, vn);
+		 case Conversation :				/* è‹±è¯­ä¼šè¯ */
+		 			word_training("è‹±è¯­ä¼šè¯çš„æ–‡æ¡£", vstr, vn);
 		 			break;
 		}
 	} while (menu != Term);

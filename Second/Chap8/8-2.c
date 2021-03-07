@@ -1,4 +1,4 @@
-/* Ò»¸ö×Ö·û´®µÄ¼üÅÌ´ò×ÖÁ·Ï°£¨Æä¶ş£ºÏûÈ¥ÒÑÊäÈëµÄ×Ö·û£©*/
+/* ä¸€ä¸ªå­—ç¬¦ä¸²çš„é”®ç›˜æ‰“å­—ç»ƒä¹ ï¼ˆå…¶äºŒï¼šæ¶ˆå»å·²è¾“å…¥çš„å­—ç¬¦ï¼‰*/
 
 #include <time.h>
 #include <stdio.h>
@@ -8,17 +8,17 @@
 int main(void)
 {
 	int 	i;
-	char	*str = "How do you do?";	/* ÒªÊäÈëµÄ×Ö·û´® */
-	int 	len = strlen(str);			/* ×Ö·û´®strµÄ×Ö·ûÊıÁ¿ */
-	clock_t start, end;					/* ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä */
+	char	*str = "How do you do?";	/* è¦è¾“å…¥çš„å­—ç¬¦ä¸² */
+	int 	len = strlen(str);			/* å­—ç¬¦ä¸²strçš„å­—ç¬¦æ•°é‡ */
+	clock_t start, end;					/* å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´ */
 
 	init_getputch();
-	printf("ÇëÕÕ×ÅÊäÈë¡£\n");
+	printf("è¯·ç…§ç€è¾“å…¥ã€‚\n");
 
-	start = clock();					/* ¿ªÊ¼Ê±¼ä */
+	start = clock();					/* å¼€å§‹æ—¶é—´ */
 
 	for (i = 0; i < len; i++) {
-		/* ÏÔÊ¾str[i]ÒÔºóµÄ×Ö·û²¢°Ñ¹â±ê·µ»Øµ½¿ªÍ· */
+		/* æ˜¾ç¤ºstr[i]ä»¥åçš„å­—ç¬¦å¹¶æŠŠå…‰æ ‡è¿”å›åˆ°å¼€å¤´ */
 		printf("%s \r", &str[i]);
 
 		fflush(stdout);
@@ -26,9 +26,9 @@ int main(void)
 			;
 	}
 
-	end = clock();						/* ½áÊøÊ±¼ä */
+	end = clock();						/* ç»“æŸæ—¶é—´ */
  
-	printf("\rÓÃÊ±%.1fÃë¡£\n", (double)(end - start) / CLOCKS_PER_SEC);
+	printf("\rç”¨æ—¶%.1fç§’ã€‚\n", (double)(end - start) / CLOCKS_PER_SEC);
 
 	term_getputch();
 

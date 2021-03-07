@@ -1,9 +1,9 @@
-/* »á·¢³ö¾¯±¨µÄ¸ñÊ½Êä³öº¯Êı */
+/* ä¼šå‘å‡ºè­¦æŠ¥çš„æ ¼å¼è¾“å‡ºå‡½æ•° */
 
 #include <stdio.h>
 #include <stdarg.h>
 
-/*--- »á·¢³ö¾¯±¨µÄ¸ñÊ½Êä³öº¯Êı ---*/
+/*--- ä¼šå‘å‡ºè­¦æŠ¥çš„æ ¼å¼è¾“å‡ºå‡½æ•° ---*/
 int aprintf(const char *format, ...)
 {
 	int 	count;
@@ -11,7 +11,7 @@ int aprintf(const char *format, ...)
 
 	putchar('\a');
 	va_start(ap, format);
-	count = vprintf(format, ap);	/* °Ñ¿É±ä²ÎÊıÍêÈ«½»ÓÉvprintfº¯ÊıÀ´´¦Àí */
+	count = vprintf(format, ap);	/* æŠŠå¯å˜å‚æ•°å®Œå…¨äº¤ç”±vprintfå‡½æ•°æ¥å¤„ç† */
 	va_end(ap);
 	return count;
 }

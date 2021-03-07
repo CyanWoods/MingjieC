@@ -1,57 +1,57 @@
-/* Ñ°ÕÒĞÒÔËÊı×ÖÑµÁ·£¨ÆäÒ»£©*/
+/* å¯»æ‰¾å¹¸è¿æ•°å­—è®­ç»ƒï¼ˆå…¶ä¸€ï¼‰*/
 
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_STAGE	10			/* ÌôÕ½´ÎÊı */
+#define MAX_STAGE	10			/* æŒ‘æˆ˜æ¬¡æ•° */
 
 int main(void)
 {
 	int i, j, stage;
 	int dgt[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 	int a[8];
-	double jikan;			/* Ê±¼ä */
-	clock_t start, end;		/* ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä */
+	double jikan;			/* æ—¶é—´ */
+	clock_t start, end;		/* å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´ */
 
-	srand(time(NULL));		/* Éè¶¨Ëæ»úÊıµÄÖÖ×Ó */
+	srand(time(NULL));		/* è®¾å®šéšæœºæ•°çš„ç§å­ */
 
-	printf("ÇëÊäÈëÈ±ÉÙµÄÊı×Ö¡£\n");
+	printf("è¯·è¾“å…¥ç¼ºå°‘çš„æ•°å­—ã€‚\n");
 
 	start = clock();
 	for (stage = 0; stage < MAX_STAGE; stage++) {
-		int x = rand() % 9;		/* Éú³ÉËæ»úÊı0¡«8 */
-		int no;					/* ÒÑ¶ÁÈ¡µÄÖµ */
+		int x = rand() % 9;		/* ç”Ÿæˆéšæœºæ•°0ï½8 */
+		int no;					/* å·²è¯»å–çš„å€¼ */
 
 		i = j = 0;
-		while (i < 9) {				/* ¸´ÖÆÊ±Ìø¹ıdgt[x] */
+		while (i < 9) {				/* å¤åˆ¶æ—¶è·³è¿‡dgt[x] */
 			if (i != x)
 				a[j++] = dgt[i];
 			i++;
 		}
 
-		for (i = 0; i < 8; i++)		/* ÏÔÊ¾ËùÓĞÔªËØ */
+		for (i = 0; i < 8; i++)		/* æ˜¾ç¤ºæ‰€æœ‰å…ƒç´  */
 			printf("%d ", a[i]);
-		printf("£º");
+		printf("ï¼š");
 
 		do {
 			scanf("%d", &no);
-		} while (no != dgt[x]);		/* Ñ­»·µ½Íæ¼ÒÊäÈëÕıÈ·´ğ°¸ÎªÖ¹ */
+		} while (no != dgt[x]);		/* å¾ªç¯åˆ°ç©å®¶è¾“å…¥æ­£ç¡®ç­”æ¡ˆä¸ºæ­¢ */
 	}
 	end = clock();
 
 	jikan = (double)(end - start) / CLOCKS_PER_SEC;
 
-	printf("ÓÃÊ±%.1fÃë¡£\n", jikan);
+	printf("ç”¨æ—¶%.1fç§’ã€‚\n", jikan);
 
 	if (jikan > 25.0)
-		printf("·´Ó¦Ì«ÂıÁË¡£\n");
+		printf("ååº”å¤ªæ…¢äº†ã€‚\n");
 	else if (jikan > 20.0)
-		printf("·´Ó¦ÓĞµãÂıÑ½¡£\n");
+		printf("ååº”æœ‰ç‚¹æ…¢å‘€ã€‚\n");
 	else if (jikan > 17.0)
-		printf("·´Ó¦»¹ĞĞ°É¡£\n");
+		printf("ååº”è¿˜è¡Œå§ã€‚\n");
 	else
-		printf("·´Ó¦Õæ¿ì°¡¡£\n");
+		printf("ååº”çœŸå¿«å•Šã€‚\n");
 
 	return 0;
 }

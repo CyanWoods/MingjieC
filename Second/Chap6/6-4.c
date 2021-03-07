@@ -1,19 +1,19 @@
-/* ÏÔÊ¾µ±Ç°ÈÕÆÚºÍÊ±¼ä£¨Æä¶ş[ĞŞ¸Ä]£ºÀûÓÃasctime2º¯Êı£©*/
+/* æ˜¾ç¤ºå½“å‰æ—¥æœŸå’Œæ—¶é—´ï¼ˆå…¶äºŒ[ä¿®æ”¹]ï¼šåˆ©ç”¨asctime2å‡½æ•°ï¼‰*/
 
 #include <time.h>
 #include <stdio.h>
 
-/*--- ¸ù¾İasctimeº¯Êı°Ñ·Ö½âÊ±¼ä×ª»»³É×Ö·û´®£¨²»Ìí¼Ó»»ĞĞ·û£©---*/
+/*--- æ ¹æ®asctimeå‡½æ•°æŠŠåˆ†è§£æ—¶é—´è½¬æ¢æˆå­—ç¬¦ä¸²ï¼ˆä¸æ·»åŠ æ¢è¡Œç¬¦ï¼‰---*/
 char *asctime2(const struct tm *timeptr)
 {
-	const char wday_name[7][3] = {					/* ĞÇÆÚ */
+	const char wday_name[7][3] = {					/* æ˜ŸæœŸ */
 		"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
 	};
-	const char mon_name[12][3] = {					/* ÔÂ·İÃû³Æ */
+	const char mon_name[12][3] = {					/* æœˆä»½åç§° */
 		"Jan", "Feb", "Mar", "Apr", "May", "Jun",
 		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 	};
-	static char result[25];				/* ÓÃÓÚ´æ´¢×Ö·û´®µÄ¿Õ¼äÊÇ¾²Ì¬¿Õ¼ä */
+	static char result[25];				/* ç”¨äºå­˜å‚¨å­—ç¬¦ä¸²çš„ç©ºé—´æ˜¯é™æ€ç©ºé—´ */
 
 	sprintf(result, "%.3s %.3s %02d %02d:%02d:%02d %4d",
 					wday_name[timeptr->tm_wday], mon_name[timeptr->tm_mon],
@@ -24,9 +24,9 @@ char *asctime2(const struct tm *timeptr)
 
 int main(void)
 {
-	time_t current = time(NULL);	/* »ñÈ¡µ±Ç°Ê±¼ä */
+	time_t current = time(NULL);	/* è·å–å½“å‰æ—¶é—´ */
 
-	printf("µ±Ç°ÈÕÆÚºÍÊ±¼äÊÇ%s¡£\n", asctime2(localtime(&current)));
+	printf("å½“å‰æ—¥æœŸå’Œæ—¶é—´æ˜¯%sã€‚\n", asctime2(localtime(&current)));
 
 	return 0;
 }

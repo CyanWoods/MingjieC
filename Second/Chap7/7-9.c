@@ -1,15 +1,15 @@
-/* ÓÃÓÚ·ÃÎÊ¿É±ä²ÎÊıµÄº¯Êı */
+/* ç”¨äºè®¿é—®å¯å˜å‚æ•°çš„å‡½æ•° */
 
 #include <stdio.h>
 #include <stdarg.h>
 
-/*--- ¸ù¾İµÚ1²ÎÊı£¬ÇóºóÃæµÄ²ÎÊıµÄºÍ ---*/
+/*--- æ ¹æ®ç¬¬1å‚æ•°ï¼Œæ±‚åé¢çš„å‚æ•°çš„å’Œ ---*/
 double vsum(int sw, ...)
 {
 	double	sum = 0.0;
 	va_list	ap;
 
-	va_start(ap, sw);	/* ¿ªÊ¼·ÃÎÊ¿É±ä²¿·ÖµÄ²ÎÊı */
+	va_start(ap, sw);	/* å¼€å§‹è®¿é—®å¯å˜éƒ¨åˆ†çš„å‚æ•° */
 
 	switch (sw) {
 	 case 0: sum += va_arg(ap, int);	/* vsum(0, int, int) */
@@ -23,7 +23,7 @@ double vsum(int sw, ...)
 			 sum += va_arg(ap, double);	
 			 break;
 	}
-	va_end(ap);			/* ½áÊø·ÃÎÊ¿É±ä²¿·ÖµÄ²ÎÊı */
+	va_end(ap);			/* ç»“æŸè®¿é—®å¯å˜éƒ¨åˆ†çš„å‚æ•° */
 
 	return sum;
 }

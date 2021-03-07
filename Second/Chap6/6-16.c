@@ -1,4 +1,4 @@
-/* ²»ÓÃargcÀ´ÏÔÊ¾³ÌÐòÃûºÍ³ÌÐòÐÎÊ½²ÎÊý */
+/* ä¸ç”¨argcæ¥æ˜¾ç¤ºç¨‹åºåå’Œç¨‹åºå½¢å¼å‚æ•° */
 
 #include <stdio.h>
 

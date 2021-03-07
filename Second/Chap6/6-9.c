@@ -1,42 +1,42 @@
-/* ÇóĞÇÆÚ£¨ÆäÒ»£ºÀûÓÃmktimeº¯Êı£©*/
+/* æ±‚æ˜ŸæœŸï¼ˆå…¶ä¸€ï¼šåˆ©ç”¨mktimeå‡½æ•°ï¼‰*/
 
 #include <time.h>
 #include <stdio.h>
 
-/*--- ÇóyearÄêmonthÔÂdayÈÕÊÇĞÇÆÚ¼¸ ---*/
+/*--- æ±‚yearå¹´monthæœˆdayæ—¥æ˜¯æ˜ŸæœŸå‡  ---*/
 int dayofweek(int year, int month, int day)
 {
 	struct tm t;
 
-	t.tm_year  = year - 1900;	/* µ÷ÕûÄê·İ */
-	t.tm_mon   = month - 1;		/* µ÷ÕûÔÂ·İ */
-	t.tm_mday  = day;			/* ÈÕ */
-	t.tm_hour  = 0;				/* Ê± */
-	t.tm_min   = 0;				/* ·Ö */
-	t.tm_sec   = 0;				/* Ãë */
-	t.tm_isdst = -1;			/* ÏÄÁîÊ± */
+	t.tm_year  = year - 1900;	/* è°ƒæ•´å¹´ä»½ */
+	t.tm_mon   = month - 1;		/* è°ƒæ•´æœˆä»½ */
+	t.tm_mday  = day;			/* æ—¥ */
+	t.tm_hour  = 0;				/* æ—¶ */
+	t.tm_min   = 0;				/* åˆ† */
+	t.tm_sec   = 0;				/* ç§’ */
+	t.tm_isdst = -1;			/* å¤ä»¤æ—¶ */
 
-	if (mktime(&t) == (time_t)-1)	/* ×ª»»Ê§°ÜµÄ»° */
-		return -1;					/* ·µ»Ø-1 */
-	return t.tm_wday;			/* ·µ»Ømktimeº¯ÊıÉè¶¨µÄĞÇÆÚ */
+	if (mktime(&t) == (time_t)-1)	/* è½¬æ¢å¤±è´¥çš„è¯ */
+		return -1;					/* è¿”å›-1 */
+	return t.tm_wday;			/* è¿”å›mktimeå‡½æ•°è®¾å®šçš„æ˜ŸæœŸ */
 }
 
 int main(void)
 {
 	int  y, m, d, w;
-	char *ws[] = {"ÈÕ", "Ò»", "¶ş", "Èı", "ËÄ", "Îå", "Áù"};
+	char *ws[] = {"æ—¥", "ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­"};
 
-	printf("ÇóĞÇÆÚ¡£\n");
-	printf("Äê£º");   scanf("%d", &y);
-	printf("ÔÂ£º");   scanf("%d", &m);
-	printf("ÈÕ£º");   scanf("%d", &d);
+	printf("æ±‚æ˜ŸæœŸã€‚\n");
+	printf("å¹´ï¼š");   scanf("%d", &y);
+	printf("æœˆï¼š");   scanf("%d", &m);
+	printf("æ—¥ï¼š");   scanf("%d", &d);
 
-	w = dayofweek(y, m, d);			/* ÇóĞÇÆÚ */
+	w = dayofweek(y, m, d);			/* æ±‚æ˜ŸæœŸ */
 
 	if (w != -1)
-		printf("ÕâÒ»ÌìÊÇĞÇÆÚ%s¡£\n", ws[w]);
+		printf("è¿™ä¸€å¤©æ˜¯æ˜ŸæœŸ%sã€‚\n", ws[w]);
 	else
-		printf("ÎŞ·¨Çó³öĞÇÆÚ¡£\n");
+		printf("æ— æ³•æ±‚å‡ºæ˜ŸæœŸã€‚\n");
 
 	return 0;
 }

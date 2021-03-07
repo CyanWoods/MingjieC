@@ -1,8 +1,8 @@
-/* ÇóĞÇÆÚ£¨Æä¶ş£ºÀûÓÃ²ÌÀÕ¹«Ê½£©*/
+/* æ±‚æ˜ŸæœŸï¼ˆå…¶äºŒï¼šåˆ©ç”¨è”¡å‹’å…¬å¼ï¼‰*/
 
 #include <stdio.h>
 
-/*--- yearÄêmonthÔÂdayÈÕÊÇĞÇÆÚ¼¸ ---*/
+/*--- yearå¹´monthæœˆdayæ—¥æ˜¯æ˜ŸæœŸå‡  ---*/
 int dayofweek(int year, int month, int day)
 {
 	if (month == 1 || month == 2) {
@@ -15,16 +15,16 @@ int dayofweek(int year, int month, int day)
 int main(void)
 {
 	int  y, m, d, w;
-	char *ws[] = {"ÈÕ", "Ò»", "¶ş", "Èı", "ËÄ", "Îå", "Áù"};
+	char *ws[] = {"æ—¥", "ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­"};
 
-	printf("ÇóĞÇÆÚ¡£\n");
-	printf("Äê£º");   scanf("%d", &y);
-	printf("ÔÂ£º");   scanf("%d", &m);
-	printf("ÈÕ£º");   scanf("%d", &d);
+	printf("æ±‚æ˜ŸæœŸã€‚\n");
+	printf("å¹´ï¼š");   scanf("%d", &y);
+	printf("æœˆï¼š");   scanf("%d", &m);
+	printf("æ—¥ï¼š");   scanf("%d", &d);
 
-	w = dayofweek(y, m, d);			/* ÇóĞÇÆÚ */
+	w = dayofweek(y, m, d);			/* æ±‚æ˜ŸæœŸ */
 
-	printf("ÕâÒ»ÌìÊÇĞÇÆÚ%s¡£\n", ws[w]);
+	printf("è¿™ä¸€å¤©æ˜¯æ˜ŸæœŸ%sã€‚\n", ws[w]);
 
 	return 0;
 }

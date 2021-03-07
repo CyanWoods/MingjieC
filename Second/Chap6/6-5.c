@@ -1,13 +1,13 @@
-/* ÏÔÊ¾µ±Ç°ÈÕÆÚºÍÊ±¼ä£¨ÆäÈı£ºÀûÓÃctimeº¯Êı£©*/
+/* æ˜¾ç¤ºå½“å‰æ—¥æœŸå’Œæ—¶é—´ï¼ˆå…¶ä¸‰ï¼šåˆ©ç”¨ctimeå‡½æ•°ï¼‰*/
 
 #include <time.h>
 #include <stdio.h>
 
 int main(void)
 {
-	time_t current = time(NULL);	/* »ñÈ¡µ±Ç°Ê±¼ä */
+	time_t current = time(NULL);	/* è·å–å½“å‰æ—¶é—´ */
 
-	printf("µ±Ç°ÈÕÆÚºÍÊ±¼ä£º%s", ctime(&current));
+	printf("å½“å‰æ—¥æœŸå’Œæ—¶é—´ï¼š%s", ctime(&current));
 
 	return 0;
 }

@@ -1,5 +1,5 @@
-/* getchµÄÊ¹ÓÃÊ¾Àı
-   ¡ùÔÚÌá¹©ÁËVisual C++µÄMS-Windows/MS-DOS»·¾³ÏÂÔËĞĞ */
+/* getchçš„ä½¿ç”¨ç¤ºä¾‹
+   â€»åœ¨æä¾›äº†Visual C++çš„MS-Windows/MS-DOSç¯å¢ƒä¸‹è¿è¡Œ */
 
 #include <conio.h>
 #include <ctype.h>
@@ -11,13 +11,13 @@ int main(void)
 	int retry;
 
 	do {
-		printf("Çë°´¼ü¡£");
+		printf("è¯·æŒ‰é”®ã€‚");
 		ch = getch();
 
-		printf("\n°´ÏÂµÄ¼üÊÇ%c£¬ÖµÊÇ%d¡£\n",
+		printf("\næŒ‰ä¸‹çš„é”®æ˜¯%cï¼Œå€¼æ˜¯%dã€‚\n",
 									  isprint(ch) ? ch : ' ', ch);
 
-		printf("ÔÙÀ´Ò»´Î£¿£¨Y£¯N£©£º");
+		printf("å†æ¥ä¸€æ¬¡ï¼Ÿï¼ˆYï¼Nï¼‰ï¼š");
 		retry = getch();
 		if (isprint(retry))
 			putch(retry);

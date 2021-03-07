@@ -1,11 +1,11 @@
-/* ¶à¸ö×Ö·û´®µÄ¼üÅÌ´ò×ÖÁ·Ï°£¨ÆäÒ»£©*/
+/* å¤šä¸ªå­—ç¬¦ä¸²çš„é”®ç›˜æ‰“å­—ç»ƒä¹ ï¼ˆå…¶ä¸€ï¼‰*/
 
 #include <time.h>
 #include <stdio.h>
 #include <string.h>
 #include "getputch.h"
 
-#define QNO		12		/* ÌâÄ¿ÊıÁ¿ */
+#define QNO		12		/* é¢˜ç›®æ•°é‡ */
 
 int main(void)
 {
@@ -13,20 +13,20 @@ int main(void)
 					  "monday", "power",    "light",    "music", 
 					  "programming", "dog", "video",    "include"};
 	int i, stage;
-	clock_t	start, end;				/* ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä */
+	clock_t	start, end;				/* å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´ */
 
 	init_getputch();
-	printf("¿ªÊ¼´ò×ÖÁ·Ï°¡£\n");
-	printf("°´ÏÂ¿Õ¸ñ¼ü¿ªÊ¼¡£\n");
-	while (getch() != ' ')			/* Ò»Ö±µÈ´ıµ½ */
-		;							/* Íæ¼Ò°´ÏÂ¿Õ¸ñ¼ü */
+	printf("å¼€å§‹æ‰“å­—ç»ƒä¹ ã€‚\n");
+	printf("æŒ‰ä¸‹ç©ºæ ¼é”®å¼€å§‹ã€‚\n");
+	while (getch() != ' ')			/* ä¸€ç›´ç­‰å¾…åˆ° */
+		;							/* ç©å®¶æŒ‰ä¸‹ç©ºæ ¼é”® */
 
-	start = clock();				/* ¿ªÊ¼Ê±¼ä */
+	start = clock();				/* å¼€å§‹æ—¶é—´ */
 
 	for (stage = 0; stage < QNO; stage++) {
-		int len = strlen(str[stage]);	/* ×Ö·û´®str[stage]µÄ×Ö·ûÊıÁ¿ */
+		int len = strlen(str[stage]);	/* å­—ç¬¦ä¸²str[stage]çš„å­—ç¬¦æ•°é‡ */
 		for (i = 0; i < len; i++) {
-			/* ÏÔÊ¾str[stage][i]ÒÔºóµÄ×Ö·û²¢°Ñ¹â±ê·µ»Øµ½¿ªÍ· */
+			/* æ˜¾ç¤ºstr[stage][i]ä»¥åçš„å­—ç¬¦å¹¶æŠŠå…‰æ ‡è¿”å›åˆ°å¼€å¤´ */
 			printf("%s \r", &str[stage][i]);
 
 			fflush(stdout);
@@ -35,9 +35,9 @@ int main(void)
 		}
 	}
 
-	end = clock();					/* ½áÊøÊ±¼ä */
+	end = clock();					/* ç»“æŸæ—¶é—´ */
 
-	printf("\rÓÃÊ±%.1fÃë¡£\n", (double)(end - start) / CLOCKS_PER_SEC);
+	printf("\rç”¨æ—¶%.1fç§’ã€‚\n", (double)(end - start) / CLOCKS_PER_SEC);
 
 	term_getputch();
 

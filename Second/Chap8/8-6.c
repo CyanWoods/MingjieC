@@ -1,6 +1,6 @@
-/* ¼üÅÌ²¼¾ÖÁªÏë´ò×ÖÁ·Ï°£¨ÈÃÍæ¼Ò×Ô¼ºË¼¿¼ÒªÊäÈëµÄ×Ö·û£©
-		ÏÔÊ¾A?DFGµÄ»°¾ÍÊäÈëS
-		ÏÔÊ¾qwe?tµÄ»°¾ÍÊäÈër						*/
+/* é”®ç›˜å¸ƒå±€è”æƒ³æ‰“å­—ç»ƒä¹ ï¼ˆè®©ç©å®¶è‡ªå·±æ€è€ƒè¦è¾“å…¥çš„å­—ç¬¦ï¼‰
+		æ˜¾ç¤ºA?DFGçš„è¯å°±è¾“å…¥S
+		æ˜¾ç¤ºqwe?tçš„è¯å°±è¾“å…¥r						*/
 
 #include <time.h>
 #include <stdio.h>
@@ -8,34 +8,34 @@
 #include <string.h>
 #include "getputch.h"
 
-#define	NO			30			/* Á·Ï°´ÎÊı */
-#define	KTYPE		16			/* ¿éÊı */
+#define	NO			30			/* ç»ƒä¹ æ¬¡æ•° */
+#define	KTYPE		16			/* å—æ•° */
 
 int main(void)
 {
-	char *kstr[] = {"12345",  "67890-^\\",		/* µÚ1²ã         */
-					"!\"#$%", "&'() =~|",		/* µÚ1²ã[Shift]  */
-					"qwert",  "yuiop@[",		/* µÚ2²ã         */
-					"QWERT",  "YUIOP`{",		/* µÚ2²ã[Shift]  */
-					"asdfg",  "hjkl;:]",		/* µÚ3²ã         */
-					"ASDFG",  "HJKL+*}",		/* µÚ3²ã[Shift]  */
-					"zxcvb",  "nm,./\\",		/* µÚ4²ã         */
-					"ZXCVB",  "NM<> _",			/* µÚ4²ã[Shift]  */
+	char *kstr[] = {"12345",  "67890-^\\",		/* ç¬¬1å±‚         */
+					"!\"#$%", "&'() =~|",		/* ç¬¬1å±‚[Shift]  */
+					"qwert",  "yuiop@[",		/* ç¬¬2å±‚         */
+					"QWERT",  "YUIOP`{",		/* ç¬¬2å±‚[Shift]  */
+					"asdfg",  "hjkl;:]",		/* ç¬¬3å±‚         */
+					"ASDFG",  "HJKL+*}",		/* ç¬¬3å±‚[Shift]  */
+					"zxcvb",  "nm,./\\",		/* ç¬¬4å±‚         */
+					"ZXCVB",  "NM<> _",			/* ç¬¬4å±‚[Shift]  */
 					};
 	int 	i, stage;
-	clock_t	start, end;			/* ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä */
+	clock_t	start, end;			/* å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´ */
 
 	init_getputch();
-	srand(time(NULL));			/* Éè¶¨Ëæ»úÊıµÄÖÖ×Ó */
+	srand(time(NULL));			/* è®¾å®šéšæœºæ•°çš„ç§å­ */
 
-	printf("¿ªÊ¼¼üÎ»ÁªÏë´ò×ÖÁ·Ï°¡£\n");
-	printf("ÇëÊäÈëÓÃ£¿Òş²ØÆğÀ´µÄ×Ö·û¡£\n");
-	printf("°´ÏÂ¿Õ¸ñ¼ü¿ªÊ¼¡£\n");
+	printf("å¼€å§‹é”®ä½è”æƒ³æ‰“å­—ç»ƒä¹ ã€‚\n");
+	printf("è¯·è¾“å…¥ç”¨ï¼Ÿéšè—èµ·æ¥çš„å­—ç¬¦ã€‚\n");
+	printf("æŒ‰ä¸‹ç©ºæ ¼é”®å¼€å§‹ã€‚\n");
 	fflush(stdout);
 	while (getch() != ' ')
 		;
 
-	start = clock();			/* ¿ªÊ¼Ê±¼ä */
+	start = clock();			/* å¼€å§‹æ—¶é—´ */
 
 	for (stage = 0; stage < NO; stage++) {
 		int  k, p, key;
@@ -58,9 +58,9 @@ int main(void)
 		putchar('\n');
 	}
 
-	end = clock();				/* ½áÊøÊ±¼ä */
+	end = clock();				/* ç»“æŸæ—¶é—´ */
 
-	printf("ÓÃÊ±%.1fÃë¡£\n", (double)(end - start) / CLOCKS_PER_SEC);
+	printf("ç”¨æ—¶%.1fç§’ã€‚\n", (double)(end - start) / CLOCKS_PER_SEC);
 
 	term_getputch();
 

@@ -1,4 +1,4 @@
-/* Èı×ÖÄ¸´ÊÁªÏëÑµÁ·£¨Íê³É3¸öÁ¬ĞøµÄÊı×Ö¡¤Ó¢ÎÄ×ÖÄ¸£©*/
+/* ä¸‰å­—æ¯è¯è”æƒ³è®­ç»ƒï¼ˆå®Œæˆ3ä¸ªè¿ç»­çš„æ•°å­—Â·è‹±æ–‡å­—æ¯ï¼‰*/
 
 #include <time.h>
 #include <ctype.h>
@@ -7,43 +7,43 @@
 #include <stdlib.h>
 #include "getputch.h"
 
-#define	MAX_STAGE	20					/* ÌôÕ½´ÎÊı */
+#define	MAX_STAGE	20					/* æŒ‘æˆ˜æ¬¡æ•° */
 #define swap(type, x, y)	do { type t = x; x = y; y = t; } while (0)
 
 int main(void)
 {
-	char *qstr[] = {"0123456789",					/* Êı×Ö */
-					"ABCDEFGHIJKLMNOPQRSTUVWXYZ",	/* ´óĞ´Ó¢ÎÄ×ÖÄ¸ */
-					"abcdefghijklmnopqrstuvwxyz",	/* Ğ¡Ğ´Ó¢ÎÄ×ÖÄ¸ */
+	char *qstr[] = {"0123456789",					/* æ•°å­— */
+					"ABCDEFGHIJKLMNOPQRSTUVWXYZ",	/* å¤§å†™è‹±æ–‡å­—æ¯ */
+					"abcdefghijklmnopqrstuvwxyz",	/* å°å†™è‹±æ–‡å­—æ¯ */
 				   };
-	int 	chmax[] = {10, 26, 26};					/* ¸÷×ÔµÄ×Ö·ûÊıÁ¿ */
+	int 	chmax[] = {10, 26, 26};					/* å„è‡ªçš„å­—ç¬¦æ•°é‡ */
 	int 	i, stage;
-	int 	key;							/* ÒÑ¶ÁÈ¡µÄ¼üÅÌÖµ */
-	double	jikan;							/* Ê±¼ä */
-	clock_t	start, end;						/* ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä */
+	int 	key;							/* å·²è¯»å–çš„é”®ç›˜å€¼ */
+	double	jikan;							/* æ—¶é—´ */
+	clock_t	start, end;						/* å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´ */
 
 	init_getputch();
 
-	srand(time(NULL));						/* Éè¶¨Ëæ»úÊıµÄÖÖ×Ó */
+	srand(time(NULL));						/* è®¾å®šéšæœºæ•°çš„ç§å­ */
 
-	printf("¡õÇëÊäÈëÁ¬ĞøµÄ3¸öÊı×Ö»òÓ¢ÎÄ×ÖÄ¸ÖĞ\n");
-	printf("¡õ±»ÒşÈ¥µÄ×Ö·û¡£\n");
-	printf("¡õÀıÈçÏÔÊ¾A?C:¾ÍÇëÊäÈëB\n");
-	printf("¡õ¡¡¡¡ÏÔÊ¾45?:¾ÍÇëÊäÈë6\n");
-	printf("¡õ¡£\n");
-	printf("¡ï°´ÏÂ¿Õ¸ñ¼ü¿ªÊ¼¡£\n");
+	printf("â–¡è¯·è¾“å…¥è¿ç»­çš„3ä¸ªæ•°å­—æˆ–è‹±æ–‡å­—æ¯ä¸­\n");
+	printf("â–¡è¢«éšå»çš„å­—ç¬¦ã€‚\n");
+	printf("â–¡ä¾‹å¦‚æ˜¾ç¤ºA?C:å°±è¯·è¾“å…¥B\n");
+	printf("â–¡ã€€ã€€æ˜¾ç¤º45?:å°±è¯·è¾“å…¥6\n");
+	printf("â–¡ã€‚\n");
+	printf("â˜…æŒ‰ä¸‹ç©ºæ ¼é”®å¼€å§‹ã€‚\n");
 	while (getch() != ' ')
 		;
 
 	start = clock();
 
 	for (stage = 0; stage < MAX_STAGE; stage++) {
-		int qtype = rand() % 3;		/* 0£ºÊı×Ö/1£º´óĞ´Ó¢ÎÄ×ÖÄ¸/2£ºĞ¡Ğ´Ó¢ÎÄ×ÖÄ¸ */
-		int nhead = rand() % (chmax[qtype] - 2);	/* ¿ªÍ·×Ö·ûµÄÏÂ±ê */
-		int x     = rand() % 3;		/* Òª°Ñ3¸ö×Ö·ûÖĞµÄÄÄÒ»¸öÉèÎª'?'ÄØ */
+		int qtype = rand() % 3;		/* 0ï¼šæ•°å­—/1ï¼šå¤§å†™è‹±æ–‡å­—æ¯/2ï¼šå°å†™è‹±æ–‡å­—æ¯ */
+		int nhead = rand() % (chmax[qtype] - 2);	/* å¼€å¤´å­—ç¬¦çš„ä¸‹æ ‡ */
+		int x     = rand() % 3;		/* è¦æŠŠ3ä¸ªå­—ç¬¦ä¸­çš„å“ªä¸€ä¸ªè®¾ä¸º'?'å‘¢ */
 
 		putchar('\r');
-		for (i = 0; i < 3; i++) {	/* ÏÔÊ¾ÌâÄ¿ */
+		for (i = 0; i < 3; i++) {	/* æ˜¾ç¤ºé¢˜ç›® */
 			if (i != x)
 				printf(" %c", qstr[qtype][nhead + i]);
 			else
@@ -54,10 +54,10 @@ int main(void)
 
 		do {
 			key = getch();
-			if (isprint(key)) {						/* Èç¹ûÄÜÏÔÊ¾µÄ»° */
-				putch(key);							/* ÏÔÊ¾°´ÏÂµÄ¼ü */
-				if (key != qstr[qtype][nhead + x])	/* Èç¹û»Ø´ğ´íÎó */
-					putch('\b');					/* °Ñ¹â±êÍùÇ°ÍËÒ»¸ñ */
+			if (isprint(key)) {						/* å¦‚æœèƒ½æ˜¾ç¤ºçš„è¯ */
+				putch(key);							/* æ˜¾ç¤ºæŒ‰ä¸‹çš„é”® */
+				if (key != qstr[qtype][nhead + x])	/* å¦‚æœå›ç­”é”™è¯¯ */
+					putch('\b');					/* æŠŠå…‰æ ‡å¾€å‰é€€ä¸€æ ¼ */
 			}
 		} while (key != qstr[qtype][nhead + x]);
 	}
@@ -65,16 +65,16 @@ int main(void)
 
 	jikan = (double)(end - start) / CLOCKS_PER_SEC;
 
-	printf("\nÓÃÊ±%.1fÃë¡£\n", jikan);
+	printf("\nç”¨æ—¶%.1fç§’ã€‚\n", jikan);
 
 	if (jikan > 50.0)
-		printf("·´Ó¦Ì«ÂıÁË¡£\n");
+		printf("ååº”å¤ªæ…¢äº†ã€‚\n");
 	else if (jikan > 40.0)
-		printf("·´Ó¦ÓĞµãÂıÑ½¡£\n");
+		printf("ååº”æœ‰ç‚¹æ…¢å‘€ã€‚\n");
 	else if (jikan > 34.0)
-		printf("·´Ó¦»¹ĞĞ°É¡£\n");
+		printf("ååº”è¿˜è¡Œå§ã€‚\n");
 	else
-		printf("·´Ó¦Õæ¿ì°¡¡£\n");
+		printf("ååº”çœŸå¿«å•Šã€‚\n");
 
 	term_getputch();
 

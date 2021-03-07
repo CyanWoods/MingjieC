@@ -1,5 +1,5 @@
-/* getchµÄÊ¹ÓÃÊ¾Àı
-   ¡ùÔÚÌá¹©ÁËCurses¿âµÄUNIX/Linux/OS X»·¾³ÏÂÔËĞĞ */
+/* getchçš„ä½¿ç”¨ç¤ºä¾‹
+   â€»åœ¨æä¾›äº†Cursesåº“çš„UNIX/Linux/OS Xç¯å¢ƒä¸‹è¿è¡Œ */
 
 #include <curses.h>
 #include <ctype.h>
@@ -16,15 +16,15 @@ int main(void)
 	refresh();
 
 	do {
-		printf("Çë°´¼ü¡£");
+		printf("è¯·æŒ‰é”®ã€‚");
 		fflush(stdout);
 
 		ch = getch();
 
-		printf("\n\r°´ÏÂµÄ¼üÊÇ%c£¬ÖµÊÇ%d¡£\n\r",
+		printf("\n\ræŒ‰ä¸‹çš„é”®æ˜¯%cï¼Œå€¼æ˜¯%dã€‚\n\r",
 										isprint(ch) ? ch : ' ', ch);
 
-		printf("ÔÙÀ´Ò»´Î£¿£¨Y£¯N£©£º");
+		printf("å†æ¥ä¸€æ¬¡ï¼Ÿï¼ˆYï¼Nï¼‰ï¼š");
 		fflush(stdout);
 		retry = getch();
 		if (isprint(retry))
