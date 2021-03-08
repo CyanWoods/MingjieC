@@ -8,21 +8,16 @@ int main (void)
 /*输入矩阵的大小*/
         int j,k,n,m;
         printf("输入矩阵A B的行列大小 NxK KxM\n");
-        do
-        {
-            scanf("%d",&n);
-            scanf("%d",&k);
-            scanf("%d",&j);
-            scanf("%d",&m);
+        do{
+            scanf("%d %d %d %d",&n,&k,&j,&m);
             if (j!=k)
                 printf("A矩阵的列数不等于B矩阵的行数，请重新输入\n");
         }while (j!=k);
         printf("输入格式正确，开始输入矩阵的元素值。\n");
 
-    //记录并打印矩阵A
+//记录并打印矩阵A
         int count1,count2,count3;
-        float a[n*k];
-        float b[k*m];
+        float a[n*k],b[k*m];
         printf("请按行输入矩阵A的%d个元素\n",k*n);
         for (count1=1;count1<=n*k;count1++) 
         {
@@ -42,7 +37,7 @@ int main (void)
             }
         printf("\n");
 
-    //记录并打印矩阵B
+//记录并打印矩阵B
         printf("请按行输入矩阵B的%d个元素\n",k*m);
         for (count2=1;count2<=m*k;count2++) 
         {
@@ -60,7 +55,7 @@ int main (void)
             }
             printf("\n");
 
-    //开始计算矩阵C
+//开始计算矩阵C
         float c[n*m];
         float sum=0;
         int p,q;
@@ -76,6 +71,7 @@ int main (void)
             }
         }
 
+//打印矩阵C
     printf("矩阵c为：\n");
         for (count=1;count<=m*n;) 
             {
