@@ -8,4 +8,3 @@ int main()
 	printf("\a\awarning warning\n");
 	return 0;
 }
-
