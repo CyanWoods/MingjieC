@@ -73,15 +73,13 @@ int main (void)
 
 //打印矩阵C
     printf("矩阵c为：\n");
-        for (count=1;count<=m*n;) 
-            {
-                for(row=0;row<m;row++)
-                {   
-                    printf("%.2f\t",c[count++]);
-                }
-                printf("\n");
-            }
+    for (count=1;count<=m*n;) 
+        {
+            for(row=0;row<m;row++)
+                printf("%.2f\t",c[count++]);
             printf("\n");
+        }
+    printf("\n");
     printf("你想继续算吗？(0)no (1)yes");
     scanf("%d",&retry);
     }while(retry==1);
