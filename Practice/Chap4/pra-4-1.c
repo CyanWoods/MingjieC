@@ -11,8 +11,10 @@ void make4digits(int x[])
 {
 	int i, j, val;
 
-	for (i = 0; i < 4; i++) {
-		do {
+	for (i = 0; i < 4; i++) 
+	{
+		do 
+		{
 			val = rand() % 10;			/* 0~9的随机数 */
 			for (j = 0; j < i; j++)		/* 是否已获得此数值 */
 				if (val == x[j])
