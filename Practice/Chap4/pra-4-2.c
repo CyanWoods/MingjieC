@@ -11,15 +11,13 @@ void make4digits(int x[])
 {
 	int i, j, val;
 
-	for (i = 0; i < 4; i++) 
-	{
-		do 
-		{
+	for (i = 0; i < 4; i++) {
+		do {
 			val = rand() % 10;			/* 0~9的随机数 */
 			for (j = 0; j < i; j++)		/* 是否已获得此数值 */
-				if (val == x[j])		/*循环检测有问题就跳出到for循环尾部 重新给var赋值*/
+				if (val == x[j])
 					break;
-		} while (j < i);				/* 循环直至获得不重复的数值 */
+		} while (j < i);		/* 循环直至获得不重复的数值 */
 		x[i] = val;
 	}
 }
@@ -86,7 +84,6 @@ int main(void)
 	int no[4];			/* 要猜的数字串 */
 	char buff[10];		/* 用于存放读取的数字串的字符串 */
 	clock_t	start, end;				/* 开始时间/结束时间 */
-	int lim=5;			/*限制次数*/			
 
 	srand(time(NULL));				/* 设定随机数种子 */
 
@@ -97,6 +94,7 @@ int main(void)
 	puts("■ 不能输入空格字符。\n");
 
 	make4digits(no);					/* 生成4个数字各不相同的数字串 */
+
 	start = clock();					/* 开始计算 */
 
 	do {
@@ -117,14 +115,12 @@ int main(void)
 		judge(buff, no, &hit, &blow);	/* 判断 */
 		print_result(hit + blow, hit);	/* 显示判断结果 */
 
-	} while (hit < 4&&try_no<=lim); 
+	} while (hit < 4); 
 
 	end = clock();						/* 计算结束 */
 
-	if (hit==4)	
-			printf("用了%d次。\n用时%.1f秒。\n",try_no, (double)(end - start) / CLOCKS_PER_SEC);
+	printf("用了%d次。\n用时%.1f秒。\n",
+					try_no, (double)(end - start) / CLOCKS_PER_SEC);
 
-	else if (try_no==lim&&hit!=4)
-		printf("您试的次数太多了。");
 	return 0;
 }
