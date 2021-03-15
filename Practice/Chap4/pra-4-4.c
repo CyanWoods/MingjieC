@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 /*--- 生成4个不同数字的组合并存入数组x ---*/
 void make4digits(int x[])
@@ -15,9 +14,7 @@ void make4digits(int x[])
 	for (i = 0; i < 4; i++) {
 		do {
 			val = rand() % 10;			/* 0~9的随机数 */
-			for (j = 0; j < i; j++)		/* 是否已获得此数值 */
-				if (val == x[j])
-					break;
+			j++;
 		} while (j < i);		/* 循环直至获得不重复的数值 */
 		x[i] = val;
 	}
@@ -34,9 +31,6 @@ int check(const char s[])
 	for (i = 0; i < 4; i++) {
 		if (!isdigit(s[i]))
 			return 2;			/* 包含了除数字以外的字符 */
-		for (j = 0; j < i; j++)
-			if (s[i] == s[j])
-				return 3;		/* 含有相同数字 */
 	}
 	return 0;					/* 字符串有效 */
 }
@@ -56,51 +50,6 @@ void judge(const char s[], const int no[], int *hit, int *blow)
 					(*blow)++;			/* blow（位置不一致）*/
 		}
 	}
-}
-
-/*————展示提示————*/
-void show_hit(const char s[], const int no[], int *hit, int *blow)
-{
-	int i, j;
-	int cnt_hit=0;
-	int cnt_blow=0;
-	int box[4]={0};
-
-	printf("  第一个数字应该是‘%d’\n",no[0]);
-	*hit = *blow = 0;
-	for (i = 0; i < 4; i++) {
-		for (j = 0; j < 4; j++)
-		 {
-			if (s[i] == '0' + no[j])	/* 数字一致 */ //整数值+‘0’得到数字字符，数字字符-‘0’得到整数值
-			{	
-				if (i == j)
-				{
-					if (cnt_hit==0)
-					{
-						printf("  数字‘%d’的位置是正确的。\n",no[j]);	//提示第一个hit的位置
-						cnt_hit++;
-					}
-					(*hit)++;			/* hit（位置也一致）*/
-				}
-				else
-				{
-					box[cnt_blow]=s[i]-'0';
-					cnt_blow++;
-					(*blow)++;			/* blow（位置不一致）*/
-				}
-			}
-		}
-	}printf("  %d也是答案数字之一\n",box[cnt_blow-1]);
-}
-
-
-/*——————根据玩家要求显示提示——————*/
-void ans(const int no[])
-{
-	int digi;
-	printf("你想显示第几位的数字？\n");
-	scanf("%d",&digi);
-	printf("第%d位的数字是：%d\n",digi,no[digi-1]);
 }
 
 /*--- 显示判断结果 ---*/
@@ -140,10 +89,8 @@ int main(void)
 	puts("■ 不能输入空格字符。\n");
 
 	make4digits(no);					/* 生成4个数字各不相同的数字串 */
-
 	printf("我他妈直接显示答案作为调试：%d%d%d%d\n",no[0],no[1],no[2],no[3]); 	//debug 直接显示答案
-
-	start = clock();					/* 开始计时 */
+	start = clock();					/* 开始计算 */
 
 	do {
 		do {
@@ -155,25 +102,13 @@ int main(void)
 			switch (chk) {
 			 case 1: puts("\a请确保输入4个字符。"); break;
 			 case 2: puts("\a请不要输入除了数字以外的字符。"); break;
-			 case 3: puts("\a请不要输入相同的数字。"); break;
 			}
 		} while (chk != 0);
 
-		ans(no);
-
 		try_no++;
-		switch (try_no%3)
-		{
-		case 0:
-			show_hit(buff, no, &hit, &blow);
-			break;
-		
-		default:
-			judge(buff, no, &hit, &blow);	/* 判断 */
-		
-			break;
-		}
+		judge(buff, no, &hit, &blow);	/* 判断 */
 		print_result(hit + blow, hit);	/* 显示判断结果 */
+
 	} while (hit < 4); 
 
 	end = clock();						/* 计算结束 */
