@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 /*--- 生成4个不同数字的组合并存入数组x ---*/
 void make4digits(int x[])
@@ -57,6 +58,36 @@ void judge(const char s[], const int no[], int *hit, int *blow)
 	}
 }
 
+/*————展示提示————*/
+void show_hit(const char s[], const int no[], int *hit, int *blow)
+{
+	int i, j;
+	int cnt_hit=0;
+	int cnt_blow=0;
+	char box[4]={0};
+
+	printf("  第一个数字应该是‘%d’\n",no[0]);
+	*hit = *blow = 0;
+	for (i = 0; i < 4; i++) {
+		for (j = 0; j < 4; j++) {
+			if (s[i] == '0' + no[j])	/* 数字一致 */ //整数值+‘0’得到数字字符，数字字符-‘0’得到整数值
+				if (i == j)
+				{
+					if (cnt_hit==0)
+					{
+						printf("  数字‘%d’的位置是正确的。\n",no[j]);	//提示第一个hit的位置
+						cnt_hit++;
+					}
+					(*hit)++;			/* hit（位置也一致）*/
+				}
+				else
+					box[cnt_blow]=s[i]+'0';
+					cnt_blow++;
+					(*blow)++;			/* blow（位置不一致）*/
+		}
+	}printf("  %d也是答案数字之一\n",box[cnt_blow]-'0');
+}
+
 /*--- 显示判断结果 ---*/
 void print_result(int snum, int spos)
 {
@@ -95,7 +126,9 @@ int main(void)
 
 	make4digits(no);					/* 生成4个数字各不相同的数字串 */
 
-	start = clock();					/* 开始计算 */
+	printf("我他妈直接显示答案作为调试：%d%d%d%d\n",no[0],no[1],no[2],no[3]); 	//debug 直接显示答案
+
+	start = clock();					/* 开始计时 */
 
 	do {
 		do {
@@ -112,9 +145,18 @@ int main(void)
 		} while (chk != 0);
 
 		try_no++;
-		judge(buff, no, &hit, &blow);	/* 判断 */
+		switch (try_no%3)
+		{
+		case 0:
+			show_hit(buff, no, &hit, &blow);
+			break;
+		
+		default:
+			judge(buff, no, &hit, &blow);	/* 判断 */
+		
+			break;
+		}
 		print_result(hit + blow, hit);	/* 显示判断结果 */
-
 	} while (hit < 4); 
 
 	end = clock();						/* 计算结束 */
