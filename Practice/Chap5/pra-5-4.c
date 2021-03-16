@@ -58,16 +58,15 @@ int main(void)
 		int digi =rand()%level;
 		char inpt;
 
-		printf("\r%*s\r请输入第%d位的字母", level, "",digi+1);
+		printf("\r%*s\r请输入第%d位的字母\n", level, "",digi+1);
 		fflush(stdout);
 		printf("%s\n", mstr);					//debug
-
 		scanf("%c", &inpt);
 
-		if (inpt!=mstr[digi])
-			printf("\a回答错误。\n");
+		if (inpt==mstr[digi])
+			printf("\a回答正确。\n");
 		else {
-			printf("回答正确。\n");
+			printf("回答错误。\n");
 			success++;
 		}
 	}
