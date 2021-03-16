@@ -27,8 +27,7 @@ int main(void)
 	int level;						/* 等级（数值的位数）*/
 	int success = 0;				/* 答对数量 */
 	clock_t start, end;					/* 开始时间/结束时间 */
-	const char ltr[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"		/* 大写英文字母 */
-					   "abcdefghijklmnopqrstuvwxyz";	/* 小写英文字母 */
+	const char ltr[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";		/* 大写英文字母 */
 
 	srand(time(NULL));					/* 设定随机数的种子 */
 
@@ -44,30 +43,32 @@ int main(void)
 	start = clock();
 	for (stage = 0; stage < MAX_STAGE; stage++) {
 		char mstr[LEVEL_MAX + 1];			/* 需要记忆的一串英文字母 */
-		char x[LEVEL_MAX * 2];				/* 读取到的一串英文字母 */
 
-		for (i = 0; i < level; i++)			/* 生成作为题目的字符串 */
-			mstr[i] = ltr[rand() % strlen(ltr)];
+		for (i = 0; i < level; i++)			/* 生成作为题目的不重复字符串 */
+			for (int j=0;j<=1;j++)
+			{
+				mstr[i] = ltr[rand() % strlen(ltr)];
+				if (mstr[i] ==mstr[j] )
+				 break;
+			}
 		mstr[level] = '\0';
+
+		int bit=rand()%level;
+		int input;
 
 		printf("%s", mstr);
 		fflush(stdout);
 		sleep(125 * level);					/* 问题提示125 × level毫秒 */
 
-//insert code segment
-		int digi =rand()%level;
-		char inpt;
-
-		printf("\r%*s\r请输入第%d位的字母\n", level, "",digi+1);
+		printf("\r%*s\r请输入%c所在的位数.\n", level, "",mstr[bit]);
 		fflush(stdout);
-		printf("%s\n", mstr);					//debug
-		scanf(" %c", &inpt);
-//insert finished
+		printf("%s", mstr);
+		scanf(" %d", &input);
 
-		if (inpt==mstr[digi])
-			printf("\a回答正确。\n");
+		if (input- bit!= 1)
+			printf("\a回答错误。\n");
 		else {
-			printf("回答错误。\n");
+			printf("回答正确。\n");
 			success++;
 		}
 	}
