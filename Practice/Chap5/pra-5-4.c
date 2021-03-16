@@ -61,7 +61,7 @@ int main(void)
 		printf("\r%*s\r请输入第%d位的字母\n", level, "",digi+1);
 		fflush(stdout);
 		printf("%s\n", mstr);					//debug
-		scanf("%c", &inpt);
+		scanf(" %c", &inpt);
 
 		if (inpt==mstr[digi])
 			printf("\a回答正确。\n");
