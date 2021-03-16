@@ -54,11 +54,17 @@ int main(void)
 		fflush(stdout);
 		sleep(125 * level);					/* 问题提示125 × level毫秒 */
 
-		printf("\r%*s\r请输入：", level, "");
-		fflush(stdout);
-		scanf("%s", x);
+//insert code segment
+		int digi =rand()%level;
+		char inpt;
 
-		if (strcmp(x, mstr) != 0)
+		printf("\r%*s\r请输入第%d位的字母", level, "",digi+1);
+		fflush(stdout);
+		printf("%s\n", mstr);					//debug
+
+		scanf("%c", &inpt);
+
+		if (inpt!=mstr[digi])
 			printf("\a回答错误。\n");
 		else {
 			printf("回答正确。\n");

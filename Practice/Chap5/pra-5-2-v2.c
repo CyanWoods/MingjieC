@@ -53,7 +53,7 @@ int main(void)
 		fflush(stdout);
 		sleep(300 * level);					/* 问题只提示300 × level毫秒 */
 
-		int digi = rand()%4;
+		int digi = rand()%(level-1);
 		int inpu;
 
 		printf("\r%*s\r请输入第%d位的数字：", level, "",digi+1);
