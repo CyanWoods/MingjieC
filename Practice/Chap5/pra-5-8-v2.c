@@ -8,7 +8,9 @@ int human;		/* 玩家的手势 */
 int comp;		/* 计算机的手势 */
 int win_no;		/* 胜利次数 */
 int lose_no;	/* 失败次数 */
-int draw_no;	/* 平局次数 */
+int draw_no;	/* 平局次数 */	
+
+score = calloc(2*times+1, sizeof(int));
 
 char *hd[] = {"石头", "剪刀", "布"};		/* 手势 */
 
@@ -74,27 +76,38 @@ int confirm_retry(void)
 int main(void)
 {
 	int judge;				/* 胜负 */
-	int retry;				/* 再来一次？*/
+	int times;				/* 设定游戏次数 */
+	printf("你想猜几次？\n");
+	scanf("%d",&times);		
 
 	initialize();						/* 初始处理 */
 
-	do {
+	for(int cnt=0;cnt<=times;cnt++)
+	 {
 		jyanken();						/* 运行猜拳游戏 */
 
 		/* 显示计算机和玩家的手势 */
 		printf("我出%s，你出%s。\n", hd[comp], hd[human]);
 
+		score[2*cnt]=human;
+		
 		judge = (human - comp + 3) % 3;	/* 判断胜负 */
+		
+		score[2*cnt+1]=judge;
 
 		count_no(judge);				/* 更新胜利/失败/平局次数 */
 
 		disp_result(judge);				/* 显示判断结果 */
 
-		retry = confirm_retry();		/* 确认是否再次挑战 */
-
-	} while (retry == 1);
+	} 
 
 	printf("%d胜%d负%d平。\n", win_no, lose_no, draw_no);
+
+	for (int i=0;i<times;i++)
+	{
+		printf("您在第%d次出的是%s，这次",score[2i],hd[2i])；
+	}
+		
 
 	return 0;
 }
