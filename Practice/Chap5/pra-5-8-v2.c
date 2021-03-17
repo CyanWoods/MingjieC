@@ -10,7 +10,6 @@ int win_no;		/* 胜利次数 */
 int lose_no;	/* 失败次数 */
 int draw_no;	/* 平局次数 */	
 
-score = calloc(2*times+1, sizeof(int));
 
 char *hd[] = {"石头", "剪刀", "布"};		/* 手势 */
 
@@ -45,10 +44,11 @@ void jyanken(void)
 /*--- 更新胜利/失败/平局次数 ---*/
 void count_no(int result)
 {
-	switch (result) {
-	 case 0: draw_no++;	 break;						/* 平局 */
-	 case 1: lose_no++;	 break;						/* 失败 */
-	 case 2: win_no++;   break;						/* 胜利 */
+	switch (result) 
+	{
+		case 0: draw_no++;	 break;						/* 平局 */
+		case 1: lose_no++;	 break;						/* 失败 */
+		case 2: win_no++;   break;						/* 胜利 */
 	}
 }
 
@@ -77,23 +77,28 @@ int main(void)
 {
 	int judge;				/* 胜负 */
 	int times;				/* 设定游戏次数 */
+	int *score;
+
 	printf("你想猜几次？\n");
 	scanf("%d",&times);		
 
+	int p=2*times-1;
+	score = (int*)calloc(p, sizeof(int));
+
 	initialize();						/* 初始处理 */
 
-	for(int cnt=0;cnt<=times;cnt++)
+	for(int cnt=0;cnt<times;cnt++)
 	 {
 		jyanken();						/* 运行猜拳游戏 */
 
 		/* 显示计算机和玩家的手势 */
 		printf("我出%s，你出%s。\n", hd[comp], hd[human]);
 
-		score[2*cnt]=human;
+		score[cnt]=human;
 		
 		judge = (human - comp + 3) % 3;	/* 判断胜负 */
 		
-		score[2*cnt+1]=judge;
+		score[cnt+times]=judge;
 
 		count_no(judge);				/* 更新胜利/失败/平局次数 */
 
@@ -103,9 +108,10 @@ int main(void)
 
 	printf("%d胜%d负%d平。\n", win_no, lose_no, draw_no);
 
+	char *res[]={"平局","输","赢"};
 	for (int i=0;i<times;i++)
 	{
-		printf("您在第%d次出的是%s，这次",score[2i],hd[2i])；
+		printf("您在第%d次出的是%s，这次你%s了\n",i+1,hd[score[i]],res[score[i+times]]);
 	}
 		
 

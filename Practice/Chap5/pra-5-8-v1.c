@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX 10
+
 int human;		/* 玩家的手势 */
 int comp;		/* 计算机的手势 */
 int win_no;		/* 胜利次数 */
@@ -76,6 +78,12 @@ int main(void)
 	int judge;				/* 胜负 */
 	int retry;				/* 再来一次？*/
 
+	int i;
+	int humanL[MAX];		/* 用于存储输入的数组 */
+	int judgeL[MAX];		/* 用于存储判断的数组 */
+	int cnt = 0;			/* 读取到的个数 */
+	char *res[]={"平局","输","赢"};
+
 	initialize();						/* 初始处理 */
 
 	do {
@@ -84,7 +92,12 @@ int main(void)
 		/* 显示计算机和玩家的手势 */
 		printf("我出%s，你出%s。\n", hd[comp], hd[human]);
 
+		cnt++;
+		humanL[cnt % MAX]=human;
+		
 		judge = (human - comp + 3) % 3;	/* 判断胜负 */
+		
+		judgeL[cnt % MAX]=judge;
 
 		count_no(judge);				/* 更新胜利/失败/平局次数 */
 
@@ -96,6 +109,15 @@ int main(void)
 
 	printf("%d胜%d负%d平。\n", win_no, lose_no, draw_no);
 
+	i = cnt - MAX;
+	if (i < 0) 
+		i = 0;
+
+	for ( ; i < cnt; i++)
+	{
+		printf("输入的是: %s\t",hd[humanL[(i+1) % MAX]]);
+		printf("结果是 : %s\n",res[judgeL[(i+1) % MAX]]);
+	}
+
 	return 0;
 }
- 
