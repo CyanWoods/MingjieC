@@ -32,7 +32,7 @@ int main(void)
 
 	printf("加一训练开始!!\n");
 	printf("记忆2位的数值。\n");
-	printf("请输入原数值加1后的值。\n");
+	printf("请输入原数值加1后的值。\n如果输入-1接下来就请回答上一个数据\n");
 
 	do {
 		printf("要挑战的等级(%d～%d)：", LEVEL_MIN, LEVEL_MAX);
@@ -60,13 +60,21 @@ int main(void)
 			printf("%d ", no[i]);			/* 显示 */
 		}
 		fflush(stdout);
-		sleep(300 * level);					/* 等待0.30 × level秒 */
+		sleep(600 * level);					/* 等待0.60 × level秒 */
 		printf("\r%*s\r", 3 * level, "");	/* 消除题目 */
 		fflush(stdout);
-
+		
+        
 		for (i = 0; i < level; i++) {		/* 读取答案 */
+		back:
 			printf("第%d个数：", i + 1);
 			scanf("%d", &x[i]);
+			if (x[i]==-1)
+			{
+				x[i]=0;
+				i--;
+				goto back;
+			}
 		}
 
 		for (i = 0; i < level; i++) {		/* 判断对错并显示 */

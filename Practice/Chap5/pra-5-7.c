@@ -60,7 +60,7 @@ int main(void)
 			printf("%d ", no[i]);			/* 显示 */
 		}
 		fflush(stdout);
-		sleep(300 * level);					/* 等待0.30 × level秒 */
+		sleep(600 * level);					/* 等待0.60 × level秒 */
 		printf("\r%*s\r", 3 * level, "");	/* 消除题目 */
 		fflush(stdout);
 
@@ -70,7 +70,7 @@ int main(void)
 		}
 
 		for (i = 0; i < level; i++) {		/* 判断对错并显示 */
-			if (x[i] != no[i] + 1)
+			if (x[i] != no[i] - 1)
 				printf("× ");
 			else {
 				printf("○ ");
