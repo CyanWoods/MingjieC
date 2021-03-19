@@ -5,7 +5,7 @@
 /*--- 各月的天数 ---*/
 int mday[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-/*--- year年month月day日是星期几 ---*/
+/*--- year年month月day日是星期几 ---*/    //先不管这段函数的意义
 int dayofweek(int year, int month, int day)
 {
 	if (month == 1 || month == 2) {
@@ -41,7 +41,8 @@ void put_calendar(int y, int m)
 
 	printf("%*s", 3 * wd, "");		/* 显示1日左侧的空格 */
 
-	for (i = 1; i <= mdays; i++) {
+	for (i = 1; i <= mdays; i++)
+	{
 		printf("%3d", i);
 		if (++wd % 7 == 0)		/* 显示星期六后 */
 			putchar('\n');		/* 换行 */
