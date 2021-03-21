@@ -25,6 +25,6 @@ int main(void)
 	}
 	printf("\r\aFire!!\n");
 	c=clock();
-	printf("time lapsed %.1f sec",(double)c/CLOCKS_PER_SEC);
+	printf("time lapsed %.5f sec",(double)c/CLOCKS_PER_SEC);
 	return 0;
 }

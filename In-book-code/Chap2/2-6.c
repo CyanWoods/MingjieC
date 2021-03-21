@@ -27,9 +27,9 @@ int main(void)
 	
 	end=clock();
 
-	req_time=(double)(end-start)/CLOCKS_PER_SEC;
-	printf("%.1f %.1f\n",(double)start,(double)(end));
-	printf("%.1f\n",(double)CLOCKS_PER_SEC);
+	req_time=1000*(double)(end-start)/CLOCKS_PER_SEC;
+	printf("%.2f %.2f\n",(double)start,(double)(end));
+	printf("%.2f\n",(double)CLOCKS_PER_SEC);
 	printf("you used %.1fsecond\n",req_time);
 
 	if(req_time>30)
