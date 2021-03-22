@@ -3,9 +3,9 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "getputch.h"
+#include "getputch.h"   //这玩意儿在类unix环境下使用gcc编译的时候要添加-lcurses参数来调用里面的curses.h头文件
 
-#define MAX_STAGE	10			/* 挑战次数 */
+#define MAX_STAGE	2			/* 挑战次数 */
 #define swap(type, x, y)	do { type t = x; x = y; y = t; } while (0)
 
 int main(void)
@@ -16,6 +16,7 @@ int main(void)
 	double jikan;				/* 时间 */
 	clock_t start, end;			/* 开始时间和结束时间 */
 
+	init_getputch();
 	srand(time(NULL));			/* 设定随机数的种子 */
 
 	printf("请输入缺少的数字。\n");
@@ -23,7 +24,7 @@ int main(void)
 	start = clock();
 	for (stage = 0; stage < MAX_STAGE; stage++) {
 		int x = rand() % 9;		/* 生成随机数0~8 */
-		int no;					/* 读取的值 */
+		char no;					/* 读取的值 */
 
 		i = j = 0;
 		while (i < 9) {			/* 复制时跳过dgt[x] */
@@ -32,7 +33,8 @@ int main(void)
 			i++;
 		}
 
-		for (i = 7; i > 0; i--) {			/* 重新排列数组a */
+		for (i = 7; i > 0; i--)    /* 重新排列数组a */
+		{			
 			int j = rand() % (i + 1);
 			if (i != j)
 				swap(int, a[i], a[j]);
@@ -40,16 +42,27 @@ int main(void)
 
 		for (i = 0; i < 8; i++)		/* 显示所有元素 */
 			printf("%d ", a[i]);
-		printf("：");
+		printf(":\n");
 
 		do {
-			no=getch();
-		} while (no != dgt[x]);		/* 循环到玩家输入正确答案为止 */
+			no = getch( );
+			if (isprint(no)) {			/* 如果能显示的话 */
+				putch(no);				/* 显示按下的键 */
+				if (no != dgt[x] + '0')	/* 如果回答错误 */
+					putch('\b');		/* 把光标往前退一格 */
+				else
+					printf("\n");		/* 换行 */
+				fflush(stdout);
+			}
+		} while (no != dgt[x] + '0');		/* 循环到玩家输入正确答案为止 */
 	}
 	end = clock();
 
-	jikan = (double)(end - start) / CLOCKS_PER_SEC;
+	jikan = (double)(end - start) / CLOCKS_PER_SEC*1000; 		//针对unix修改了一下宏
+	
+	term_getputch();
 
+	printf("\n");
 	printf("用时%.1f秒。\n", jikan);
 
 	if (jikan > 25.0)

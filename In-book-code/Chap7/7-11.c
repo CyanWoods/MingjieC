@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "getputch.h"
 
-#define MAX_STAGE	10					/* 挑战次数 */
+#define MAX_STAGE	3					/* 挑战次数 */
 #define swap(type, x, y)	do { type t = x; x = y; y = t; } while (0)
 
 int main(void)
@@ -64,8 +64,10 @@ int main(void)
 	}
 	end = clock();
 
-	jikan = (double)(end - start) / CLOCKS_PER_SEC;
+	jikan = (double)(end - start) / CLOCKS_PER_SEC*1000;
 
+	
+	printf("%.1f秒。%.1f秒\n", (double)start,(double)end);
 	printf("用时%.1f秒。\n", jikan);
 
 	if (jikan > 25.0)
@@ -77,7 +79,9 @@ int main(void)
 	else
 		printf("反应真快啊。\n");
 
+	while (getch() != ' ')
+		;
 	term_getputch();
-
+	
 	return 0;
 }
