@@ -26,29 +26,39 @@ int main(void)
 
 	srand(time(NULL));						/* 设定随机数的种子 */
 
-	printf("□请输入连续的3个数字或英文字母中\n");
-	printf("□被隐去的字符。\n");
-	printf("□例如显示A?C:就请输入B\n");
-	printf("□　　显示45?:就请输入6\n");
-	printf("□。\n");
-	printf("★按下空格键开始。\n");
+	printf("□ 请输入连续的3个数字或英文字母中\n");
+	printf("□ 被隐去的字符。\n");
+	printf("□ 例如显示A?C:就请输入B\n");
+	printf("□　　 显示45?:就请输入6\n");
+	printf("□ 。\n");
+	printf("★ 按下空格键开始。\n");
 	while (getch() != ' ')
 		;
 
 	clock_gettime(CLOCK_REALTIME, &start);
 
-	for (stage = 0; stage < MAX_STAGE; stage++) {
-		int qtype = rand() % 3;		/* 0：数字/1：大写英文字母/2：小写英文字母 */
+	for (stage = 0; stage < MAX_STAGE; stage++) 
+	{
+		int qtype = rand() % 3;						/* 0：数字/1：大写英文字母/2：小写英文字母 */
 		int nhead = rand() % (chmax[qtype] - 2);	/* 开头字符的下标 */
-		int x     = rand() % 3;		/* 要把3个字符中的哪一个设为'?'呢 */
+		int x     = rand() % 3;						/* 第几个字符设置为问号（0 1 2） */
 
 		putchar('\r');
 		for (i = 0; i < 3; i++) {	/* 显示题目 */
 			if (i != x)
-				printf(" %c", qstr[qtype][nhead + i]);
+				que[i]=qstr[qtype][nhead + i];
 			else
-				printf(" ?");
+			{
+				que[i]='?';
+			}
 		}
+
+		swap(char,que[0],que[2]);
+
+		for(i=0;i<3;i++)
+			printf("%c  ",que[i]);
+		
+
 		printf(" : ");
 		fflush(stdout);
 
