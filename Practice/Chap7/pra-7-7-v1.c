@@ -62,7 +62,8 @@ int main(void)
 			printf("%d", a[i]);
 			sleep(500);
 			fflush(stdout);
-			printf("\r\r%*s",5," ");
+			printf("\b");
+			printf("%s"," ");
 			sleep(500);
 			fflush(stdout);
 		}
