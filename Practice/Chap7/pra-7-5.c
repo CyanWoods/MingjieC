@@ -1,6 +1,7 @@
 /* 寻找重复数字训练（其二：实时键盘输入）*/
 
 #include <ctype.h>
+#include <string.h>			//使用这个头文件来使用memset函数以重置字符串
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,7 +16,7 @@ int main(void)
 	int dgt[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 	char a[15]={" "};
 	double jikan;						/* 时间 */
-	clock_t start, end;					/* 开始时间和结束时间 */
+	struct timespec start, end;					/* 开始时间和结束时间 */
 
 	init_getputch();
 	srand(time(NULL));					/* 设定随机数的种子 */
@@ -26,7 +27,7 @@ int main(void)
 	while (getch() != ' ')
 		;
 
-	start = clock();
+	clock_gettime(CLOCK_REALTIME, &start);
 	for (stage = 0; stage < MAX_STAGE; stage++) {
 		int x = rand() % 9;		/* 生成随机数0～8 */
 		int no;					/* 已读取的值 */
@@ -48,9 +49,9 @@ int main(void)
 		{
 			for (int p=0;p<5;p++)
 			{
-				printf("\t%c ", a[p+i*5]);
+				printf("\t%c", a[p+i*5]);
 			}
-			printf("\n");
+			printf("\n\n");
 		}
 		printf("：");
 		fflush(stdout);
@@ -69,12 +70,15 @@ int main(void)
 			}
 		} while (no != dgt[x] + '0');
 	}
-	end = clock();
+	clock_gettime(CLOCK_REALTIME, &end);
 
-	jikan = (double)(end - start) / CLOCKS_PER_SEC*1000;
+    long seconds = end.tv_sec - start.tv_sec;
+    long nanoseconds = end.tv_nsec - start.tv_nsec;
+    jikan = seconds + nanoseconds*1e-9;
 
-	
-	printf("%.1f秒。%.1f秒\n", (double)start,(double)end);
+	while (getch() != ' ')
+		;
+	term_getputch();
 	printf("用时%.1f秒。\n", jikan);
 
 	if (jikan > 25.0)
@@ -86,9 +90,7 @@ int main(void)
 	else
 		printf("反应真快啊。\n");
 
-	while (getch() != ' ')
-		;
-	term_getputch();
+	
 	
 	return 0;
 }

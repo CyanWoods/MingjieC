@@ -1,5 +1,6 @@
 /* 寻找幸运数字训练（其二：数字随机排列）*/
 
+#include <ctype.h>
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,14 +15,18 @@ int main(void)
 	int dgt[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 	int a[9];
 	double jikan;				/* 时间 */
-	clock_t start, end;			/* 开始时间和结束时间 */
+	struct timespec start, end;		/* 开始时间和结束时间 */
 
 	init_getputch();
 	srand(time(NULL));			/* 设定随机数的种子 */
 
 	printf("请输入缺少的数字。\n");
+	printf("按下空格键开始。\n");
+	fflush(stdout);
+	while (getch() != ' ')
+		;
 
-	start = clock();
+	clock_gettime(CLOCK_REALTIME, &start);
 	for (stage = 0; stage < MAX_STAGE; stage++) {
 		int x = rand() % 9;		/* 生成随机数0~8 */
 		char no;					/* 读取的值 */
@@ -42,7 +47,8 @@ int main(void)
 
 		for (i = 0; i < 9; i++)		/* 显示所有元素 */
 			printf("%d ", a[i]);
-		printf(":\n");
+		printf(":");
+		fflush(stdout);
 
 		do {
 			no = getch( );
@@ -56,10 +62,13 @@ int main(void)
 			}
 		} while (no != dgt[x] + '0');		/* 循环到玩家输入正确答案为止 */
 	}
-	end = clock();
+	clock_gettime(CLOCK_REALTIME, &end);
 
-	jikan = (double)(end - start) / CLOCKS_PER_SEC*1000; 		//针对unix修改了一下宏
-	
+    long seconds = end.tv_sec - start.tv_sec;
+    long nanoseconds = end.tv_nsec - start.tv_nsec;
+    jikan = seconds + nanoseconds*1e-9;
+     while (getch() != ' ')
+		;
 	term_getputch();
 
 	printf("\n");

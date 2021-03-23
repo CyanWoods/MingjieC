@@ -9,6 +9,17 @@
 #define MAX_STAGE	2			/* 挑战次数 */
 #define swap(type, x, y)	do { type t = x; x = y; y = t; } while (0)
 
+int sleep(unsigned long x)				//引入一个老朋友
+{
+	clock_t c1 = clock(), c2;
+
+	do {
+		if ((c2 = clock()) == (clock_t)-1)
+			return 0;
+	} while (1000.0 * (c2 - c1) / CLOCKS_PER_SEC < x);
+	return 1;
+}
+
 int main(void)
 {
 	int i, j, stage;
@@ -47,7 +58,14 @@ int main(void)
 		}
 
 		for (i = 0; i < 8; i++)		/* 显示所有元素 */
-			printf("%d ", a[i]);
+		{
+			printf("%d", a[i]);
+			sleep(500);
+			fflush(stdout);
+			printf("\r\r%*s",5," ");
+			sleep(500);
+			fflush(stdout);
+		}
 		printf(":");
 		fflush(stdout);
 
