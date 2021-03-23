@@ -11,7 +11,8 @@ int main(void)
 	int 	i;
 	char	*str = "How do you do?";	/* 要输入的字符串 */
 	int 	len = strlen(str);			/* 字符串str的字符数量 */
-	clock_t start, end;					/* 开始时间和结束时间 */
+	struct timespec start, end; 
+    double time_elapsed;
 
 	init_getputch();
 
@@ -19,8 +20,7 @@ int main(void)
 	printf("%s\n", str);				/* 显示要输入的字符串 */
 	fflush(stdout);
 
-	start = clock();					/* 开始时间 */
-
+	clock_gettime(CLOCK_REALTIME, &start);
 	for (i = 0; i < len; i++) {
 		int ch;
 
@@ -33,12 +33,14 @@ int main(void)
 			}
 		} while (ch != str[i]);
 	}
-
-	end = clock();						/* 结束时间 */
-
-	printf("\n用时%.1f秒。\n", (double)(end - start) / CLOCKS_PER_SEC);
-
+	clock_gettime(CLOCK_REALTIME, &end);						/* 结束时间 */
 	term_getputch();
 
+	long seconds = end.tv_sec - start.tv_sec;
+    long nanoseconds = end.tv_nsec - start.tv_nsec;
+    time_elapsed = seconds + nanoseconds*1e-9;
+
+    printf("用时%.1f秒。\n", time_elapsed);
+	
 	return 0;
 }

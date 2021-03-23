@@ -10,12 +10,13 @@ int main(void)
 	int 	i;
 	char	*str = "How do you do?";	/* 要输入的字符串 */
 	int 	len = strlen(str);			/* 字符串str的字符数量 */
-	clock_t start, end;					/* 开始时间和结束时间 */
+   	struct timespec start, end; 
+    double time_elapsed;
 
 	init_getputch();
 	printf("请照着输入。\n");
 
-	start = clock();					/* 开始时间 */
+    clock_gettime(CLOCK_REALTIME, &start);
 
 	for (i = 0; i < len; i++) {
 		/* 显示str[i]以后的字符并把光标返回到开头 */
@@ -26,11 +27,15 @@ int main(void)
 			;
 	}
 
-	end = clock();						/* 结束时间 */
- 
-	printf("\r用时%.1f秒。\n", (double)(end - start) / CLOCKS_PER_SEC);
+	clock_gettime(CLOCK_REALTIME, &end);
 
 	term_getputch();
+
+	long seconds = end.tv_sec - start.tv_sec;
+    long nanoseconds = end.tv_nsec - start.tv_nsec;
+    time_elapsed = seconds + nanoseconds*1e-9;
+
+    printf("用时%.1f秒。\n", time_elapsed);
 
 	return 0;
 }

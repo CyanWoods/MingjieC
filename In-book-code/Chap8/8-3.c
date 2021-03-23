@@ -13,7 +13,8 @@ int main(void)
 					  "monday", "power",    "light",    "music", 
 					  "programming", "dog", "video",    "include"};
 	int i, stage;
-	clock_t	start, end;				/* 开始时间和结束时间 */
+	struct timespec start, end; 
+    double time_elapsed;
 
 	init_getputch();
 	printf("开始打字练习。\n");
@@ -21,7 +22,7 @@ int main(void)
 	while (getch() != ' ')			/* 一直等待到 */
 		;							/* 玩家按下空格键 */
 
-	start = clock();				/* 开始时间 */
+	clock_gettime(CLOCK_REALTIME, &start);				/* 开始时间 */
 
 	for (stage = 0; stage < QNO; stage++) {
 		int len = strlen(str[stage]);	/* 字符串str[stage]的字符数量 */
@@ -34,12 +35,15 @@ int main(void)
 				;
 		}
 	}
-
-	end = clock();					/* 结束时间 */
-
-	printf("\r用时%.1f秒。\n", (double)(end - start) / CLOCKS_PER_SEC);
+	clock_gettime(CLOCK_REALTIME, &end);					/* 结束时间 */
 
 	term_getputch();
+
+	long seconds = end.tv_sec - start.tv_sec;
+    long nanoseconds = end.tv_nsec - start.tv_nsec;
+    time_elapsed = seconds + nanoseconds*1e-9;
+
+    printf("用时%.1f秒。\n", time_elapsed);
 
 	return 0;
 }
