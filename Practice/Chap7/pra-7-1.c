@@ -1,5 +1,5 @@
 /* 寻找幸运数字训练（其二：数字随机排列）*/
-
+#include <ctype.h>
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,7 +18,7 @@ int main(void)
 
 	init_getputch();
 	srand(time(NULL));			/* 设定随机数的种子 */
-
+	printf("\n");
 	printf("请输入缺少的数字。\n");
 
 	start = clock();
@@ -42,11 +42,12 @@ int main(void)
 
 		for (i = 0; i < 8; i++)		/* 显示所有元素 */
 			printf("%d ", a[i]);
-		printf(":\n");
+		printf(":");
+		printf("\n");
 
 		do {
-			no = getch( );
-			if (isprint(no)) {			/* 如果能显示的话 */
+			no = getch();
+			if (isprint((int)no)) {			/* 如果能显示的话 */
 				putch(no);				/* 显示按下的键 */
 				if (no != dgt[x] + '0')	/* 如果回答错误 */
 					putch('\b');		/* 把光标往前退一格 */
