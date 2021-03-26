@@ -1,3 +1,6 @@
+//把List 1-8里的do语句改写成for语句。
+
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>

@@ -1,3 +1,6 @@
+/*编写一个“抽签”的程序，生成0~6的随机数，根据值来显示“大吉”“中吉”“小吉”“吉”“末吉”“凶”“大凶”。*/
+
+
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>

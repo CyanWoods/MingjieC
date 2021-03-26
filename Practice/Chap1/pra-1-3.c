@@ -1,3 +1,6 @@
+//编写一个“猜数游戏”，让目标数字是一个在-999和999之间的整数。同时还需思考应该把玩家最多可输入的次数定在多少合适
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
