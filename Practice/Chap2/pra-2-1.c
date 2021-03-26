@@ -1,6 +1,7 @@
 //!代码来源于CSDN：https://blog.csdn.net/Isabel_Bei/article/details/107068548
 //List 2-5 是一个用秒数来表示程序开始后经过的时间的程序。请改写程序，令其不仅能用秒数，还能用时钟数来表示时间。
 
+
 #include <time.h>
 #include <stdio.h>
 

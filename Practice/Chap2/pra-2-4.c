@@ -1,3 +1,6 @@
+//编写一个如字幕般显示字符串的函数。void telop (const char *s, int direction, int speed, int n);
+
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>

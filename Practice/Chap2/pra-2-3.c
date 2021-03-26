@@ -1,3 +1,6 @@
+//编写一个闪烁显示字符串的函数。 void bput (const char *s, int d, int e, int n);
+
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>

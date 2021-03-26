@@ -1,3 +1,6 @@
+//编写一个函数，令其能从字符串开头逐一显示字符。 void gput (const char *s, int speed);
+
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>

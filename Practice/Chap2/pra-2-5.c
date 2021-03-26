@@ -1,3 +1,6 @@
+//List 2-3 的“心算训练”程序显示的是进行10次加法运算所需要的时间。改写程序，令其能显示每次运算所需要的时间和运算的平均时间。
+
+
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
